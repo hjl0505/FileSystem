@@ -24,7 +24,7 @@ public class FileSystem
         int dirSize = fsize(dirEnt);
         if (dirSize > 0)
         {
-            bye[] dirData = new byte[dirSize];
+            byte[] dirData = new byte[dirSize];
             read(dirEnt, dirData);
             directory.bytes2directory(dirData);
         }

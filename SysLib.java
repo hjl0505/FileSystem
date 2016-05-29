@@ -10,9 +10,9 @@ public class SysLib {
 
     // formats disk
     // files specify the maximum number of files to be created
-    public static int format(int files)
+    public static int format(int fileCount)
     {
-        return Kernel.interrupt(Kernel.INTERRUPT_SOFTWARE, Kernel.FORMAT, files, null);
+        return Kernel.interrupt(Kernel.INTERRUPT_SOFTWARE, Kernel.FORMAT, fileCount, null);
     }
 
     // open file with fileName in given mode
@@ -29,13 +29,13 @@ public class SysLib {
     }
 
     // reads up to buffer.length bytes from file indicated by fd
-    public static int read(int fd, byte buffer[])
+    public static int read(int fd, byte[] buffer)
     {
         return Kernel.interrupt(Kernel.INTERRUPT_SOFTWARE, Kernel.READ, fd, buffer);
     }
 
     // writes contents of buffer to the file indicated by fd
-    public static int write(int fd, byte buffer[])
+    public static int write(int fd, byte[] buffer)
     {
         return Kernel.interrupt( Kernel.INTERRUPT_SOFTWARE, Kernel.WRITE, fd, buffer );
     }

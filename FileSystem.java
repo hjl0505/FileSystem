@@ -41,16 +41,19 @@ public class FileSystem
 
     }
 
+    // Formats the disk with maximum number of files/Inodes to be created
     boolean format(int files)
     {
 
     }
 
-    FileTableEntry open(String filename, String mode)
+    // Opens the specified file in the given mode
+    int open(String filename, String mode)
     {
 
     }
 
+    //
     boolean close(FileTableEntry ftEnt)
     {
 
@@ -61,6 +64,9 @@ public class FileSystem
 
     }
 
+    // Reads up to buffer.length bytes from the file indicated by fd,
+    //  starting at the position currently pointed to by the seek pointer
+    // Returns the number of bytes read or error code
     int read(FileTableEntry ftEnt, byte[] buffer)
     {
 

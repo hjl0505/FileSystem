@@ -159,7 +159,17 @@ public class Kernel
                         System.out.println( "threaOS: caused read errors" );
                         return ERROR;
                   }
-                  // return FileSystem.read( param, byte args[] );
+                  // Added --------------------------------------------------------------------------------------------
+                  myTcb = scheduler.getMyTcb(); // get TCB
+                  if (myTcb != null)
+                  {
+                     FileTableEntry ftEnt = myTcb.getFtEnt(param); // get entry with the file descriptor
+                     if (ftEnt != null)
+                     {
+                        return fs.read(ftEnt, (byte[]) args); // read from file system & return total bytes read
+                     }
+                  }
+                  // --------------------------------------------------------------------------------------------------
                   return ERROR;
                case WRITE:
                   switch ( param ) {
@@ -168,12 +178,23 @@ public class Kernel
                         return ERROR;
                      case STDOUT:
                         System.out.print( (String)args );
-                        break;
+                        return OK;
                      case STDERR:
                         System.err.print( (String)args );
-                        break;
+                        return OK;
                   }
-                  return OK;
+                  // Added --------------------------------------------------------------------------------------------
+                  myTcb = scheduler.getMyTcb(); // get TCB
+                  if (myTcb != null)
+                  {
+                     FileTableEntry ftEnt = myTcb.getFtEnt(param); // get entry with the file descriptor
+                     if (ftEnt != null)
+                     {
+                        return fs.read(ftEnt, (byte[]) args); // write to file system and return total bytes written
+                     }
+                  }
+                  // --------------------------------------------------------------------------------------------------
+                  return ERROR;
                case CREAD:   // to be implemented in assignment 4
                   return cache.read( param, ( byte[] )args ) ? OK : ERROR;
                case CWRITE:  // to be implemented in assignment 4
@@ -184,38 +205,69 @@ public class Kernel
                case CFLUSH:  // to be implemented in assignment 4
                   cache.flush( );
                   return OK;
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-               case OPEN:    // to be implemented in project
-                  return OK;
-               case CLOSE:   // to be implemented in project
-                  return OK;
-               case SIZE:    // to be implemented in project
-                  return OK;
+               // Edited -----------------------------------------------------------------------------------------------
+               case OPEN:
+                  myTcb = scheduler.getMyTcb(); // get TCB
+                  if (myTcb != null)
+                  {
+                     String[] temp = (String[]) args; // arg[0] = file name, arg[1] = mode
+                     FileTableEntry ftEnt = fs.open(temp[0], temp[1]); // open file
+                     if (ftEnt != null)
+                     {
+                        return myTcb.getFd(ftEnt); // return file descriptor index
+                     }
+                  }
+                  return ERROR;
+               case CLOSE:
+                  myTcb = scheduler.getMyTcb(); // get TCB
+                  if (myTcb != null)
+                  {
+                     FileTableEntry ftEnt = myTcb.getFtEnt(param);
+                     if (ftEnt != null)
+                     {
+                        if (fs.close(ftEnt)) // close file
+                        {
+                           return OK; // close file success
+                        }
+                     }
+                  }
+                  return ERROR;
+               case SIZE:
+                  myTcb = scheduler.getMyTcb(); // get TCB
+                  if (myTcb != null)
+                  {
+                     FileTableEntry ftEnt = myTcb.getFtEnt(param);
+                     if (ftEnt != null)
+                     {
+                        return fs.fsize(ftEnt); // get file size
+                     }
+                  }
+                  return ERROR;
                case SEEK:    // to be implemented in project
-                  return OK;
+                  myTcb = scheduler.getMyTcb(); // get TCB
+                  if (myTcb != null)
+                  {
+                     FileTableEntry ftEnt = myTcb.getFtEnt(param);
+                     if (ftEnt != null)
+                     {
+                        int[] temp = (int[]) args; // args[0] = offset, args[1] = whence
+                        return(fs.seek(ftEnt, temp[0], temp[1]));
+                     }
+                  }
+                  return ERROR;
                case FORMAT:  // to be implemented in project
-                  return OK;
+                  if (fs.format(param))
+                  {
+                     return OK;
+                  }
+                  return ERROR;
                case DELETE:  // to be implemented in project
-                  return OK;
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
+                  if (fs.delete((String)args))
+                  {
+                     return OK;
+                  }
+                  return ERROR;
+               // -----------------------------------------------------------------------------------------------------
             }
             return ERROR;
          case INTERRUPT_DISK: // Disk interrupts

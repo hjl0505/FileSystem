@@ -1,3 +1,10 @@
+// Edited By Chris Knakal and Hyungjin Lee
+// CSS 430 Program 5
+// 5/30/2016
+
+
+import java.util.Vector;
+
 public class FileTable
 {
 
@@ -28,8 +35,10 @@ public class FileTable
       // return true if this file table entry found in my table
    }
 
+   // return if table is empty
+   // should be called before starting a format
    public synchronized boolean fempty()
    {
-      return table.isEmpty( );  // return if table is empty
-   }                            // should be called before starting a format
+      return table.isEmpty( );
+   }
 }

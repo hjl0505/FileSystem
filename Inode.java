@@ -1,3 +1,8 @@
+// Edited By Chris Knakal and Hyungjin Lee
+// CSS 430 Program 5
+// 5/30/2016
+
+
 public class Inode
 {
    private final static int iNodeSize = 32;       // fix to 32 bytes

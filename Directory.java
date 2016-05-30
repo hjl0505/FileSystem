@@ -1,3 +1,7 @@
+// Edited By Chris Knakal and Hyungjin Lee
+// CSS 430 Program 5
+// 5/30/2016
+
 public class Directory
 {
    private static int maxChars = 30; // max characters of each file name

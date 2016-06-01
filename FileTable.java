@@ -11,6 +11,8 @@ public class FileTable
    private Vector table;         // the actual entity of this file table
    private Directory dir;        // the root directory
 
+   private Vector<Inode> inodeList; // maintains all inode on MEMORY
+
    public FileTable(Directory directory) // constructor
    {
       table = new Vector();     // instantiate a file (structure) table
@@ -25,6 +27,7 @@ public class FileTable
       // increment this inode's count
       // immediately write back this inode to the disk
       // return a reference to this file (structure) table entry
+      return null;
    }
 
    public synchronized boolean ffree(FileTableEntry e)
@@ -33,6 +36,7 @@ public class FileTable
       // save the corresponding inode to the disk
       // free this file table entry.
       // return true if this file table entry found in my table
+      return false;
    }
 
    // return if table is empty

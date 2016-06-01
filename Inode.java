@@ -31,7 +31,7 @@ public class Inode
       // read in disk block where Inode lives
       // disk block = iNumber / 16
       byte[] data = new byte[512];
-      SysLib.rawread(iNumber / 16, data);
+      SysLib.rawread((iNumber / 16) + 1, data);
 
       // read Inodes 32 bytes within the disk block
       // Inode bytes within disk block start at (iNumber % 16) * 32
@@ -51,7 +51,7 @@ public class Inode
       // Get the disk where this Inode belongs
       // disk block = iNumber / 16
       byte[]data = new byte[512];
-      SysLib.rawread(iNumber / 16, data);
+      SysLib.rawread((iNumber / 16) + 1, data);
 
       // Inode bytes within disk block start at (iNumber % 16) * 32
       int startIndex = (iNumber % 16) * 32;

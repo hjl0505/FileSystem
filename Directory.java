@@ -80,8 +80,15 @@ public class Directory
 
    public boolean ifree(short iNumber)
    {
-      // deallocates this inumber (inode number)
+      // deallocate this inumber (inode number)
+      fsize[iNumber] = 0;
+      for (int i = 0; i < fnames[iNumber].length; i++)
+      {
+          fnames[iNumber][i] = '';
+      }
+
       // the corresponding file will be deleted.
+
    }
 
    public short namei(String filename)
@@ -106,6 +113,6 @@ public class Directory
 /*
 * Questions:
 *  How do I conver the character array to bytes?
+*  How do I delete the file from the directory?
 *
-*  
 */

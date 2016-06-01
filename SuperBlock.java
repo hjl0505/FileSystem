@@ -32,6 +32,17 @@ class SuperBlock
     // Add the blockID to the end of the freeList
     boolean returnBlock (int blockID)
     {
+        if (blockID < totalBlocks)
+        {
+            // do something
+            return true;
+        }
         return false;
     }
 }
+
+/*
+* Questions:
+*
+*
+*/

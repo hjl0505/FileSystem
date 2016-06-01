@@ -112,7 +112,7 @@ public class Directory
 
 /*
 * Questions:
-*  How do I conver the character array to bytes?
+*  How do I convert the character array to bytes?
 *  How do I delete the file from the directory?
 *
 */

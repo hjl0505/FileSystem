@@ -7,7 +7,7 @@ public class Directory
    private static int maxChars = 30; // max characters of each file name
 
    // Directory entries
-   private int fsize[];        // each element stores a different file size.
+   private short fsize[];        // each element stores a different file size.
    private char fnames[][];    // each element stores a different file name.
 
    public Directory(int maxInumber) // directory constructor
@@ -29,7 +29,7 @@ public class Directory
       // fill in the fsize array
       for (int i = 0; i < fsize.length; i++)
       {
-          fsize[i] = SysLib.bytes2int(data, (i * 4));
+          fsize[i] = SysLib.bytes2short(data, (i * 4));
       }
 
       // fill in the fnames array
@@ -50,7 +50,7 @@ public class Directory
       // convert the fsize array
       for (int i = 0; i < fsize.length; i++)
       {
-          SysLib.int2bytes(fsize[i], data, (i * 4));
+          SysLib.short2bytes(fsize[i], data, (i * 4));
       }
 
       // convert the fnames array
@@ -71,7 +71,7 @@ public class Directory
               // put the file name in the fnames array
               filename.getChars(0, fsize[i], fnames[i], 0);
               // return the index as a short to be this file's iNumber
-              return (short) i;
+              return i;
           }
       }
       // No free iNumbers left in the directory
@@ -101,7 +101,7 @@ public class Directory
           if (fsize[i] == filename.length() && filename.equals(String.valueOf(fnames[i])));
           {
               // return the index as a short
-              return (short) i;
+              return i;
           }
       }
       // file not found

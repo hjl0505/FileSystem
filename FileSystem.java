@@ -61,6 +61,8 @@ public class FileSystem
 
     int fsize(FileTableEntry ftEnt)
     {
+        // decrement Inode count
+        // if count is 0 after decrementing, write Inode to disk
 
     }
 

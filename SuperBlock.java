@@ -10,6 +10,8 @@ class SuperBlock
 
    }
 
+   // Constructor: grab
+
     // Formats the disk
     // fileCount: number of inode blocks that the disk needs to free up
    void format (int fileCount)

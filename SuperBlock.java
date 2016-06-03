@@ -31,7 +31,7 @@ class SuperBlock
 
        // create the freeList linked list
        byte[] block = new byte[Disk.blockSize];
-       for (int i = freeList; i < totalBlocks - 1; i++)
+       for (int i = freeList; i < totalBlocks; i++)
        {
            // get this block from disk
            SysLib.rawread(i, block);
@@ -54,11 +54,11 @@ class SuperBlock
         byte[] superBlock = new byte[Disk.blockSize];
 
         // write totalBlocks to the block
-        SysLib.int2bytes(totalBlocks, block, 0);
+        SysLib.int2bytes(totalBlocks, superBlock, 0);
         // write totalInodes to the block
-        SysLib.int2bytes(totalInodes, block, 4);
+        SysLib.int2bytes(totalInodes, superBlock, 4);
         // write the freeList to the block
-        SysLib.int2bytes(freeList, block, 8);
+        SysLib.int2bytes(freeList, superBlock, 8);
 
         // write the superBlock to disk
         SysLib.rawwrite(0, superBlock);
@@ -87,33 +87,38 @@ class SuperBlock
     // Add the blockID to the end of the freeList
     boolean returnBlock (int blockID)
     {
-        if (blockID < totalBlocks && blockID > 0 && freeList != -1)
+        if (blockID < totalBlocks && blockID > 0)
         {
-            byte[] readBlock = new byte[Disk.blockSize];
-            byte[] writeBlock = new byte[Disk.blockSize];
-
-            // set writeBlock's next free block to -1
-            SysLib.int2bytes(-1, writeBlock, 0);
-
-            int next = freeList;
-            int current = freeList;
-
-            // start reading from the freeList until you find the block with
-            //  -1 as the next free block
-            while(next != -1)
+            if (freeList == -1)
             {
-                SysLib.rawread(next, readBlock);
-                current = next; // set current block to the one we just read
-                next = SysLib.bytes2int(readBlock, 0); // next block to read
-                if (next == -1)
-                {
-                    // we found the last free block
-                    // set the current block to point to blockID
-                    SysLib.int2bytes(blockID, readBlock, 0);
-                    SysLib.rawwrite(current, readBlock);
-                    // write writeBlock to disk
-                    SysLib.rawwrite(blockID, writeBlock);
-                    return true;
+                // return the block
+            }
+            else
+            {
+                byte[] readBlock = new byte[Disk.blockSize];
+                byte[] writeBlock = new byte[Disk.blockSize];
+
+                // set writeBlock's next free block to -1
+                SysLib.int2bytes(-1, writeBlock, 0);
+
+                int next = freeList;
+                int current = freeList;
+
+                // start reading from the freeList until you find the block with
+                //  -1 as the next free block
+                while (next != -1) {
+                    SysLib.rawread(next, readBlock);
+                    current = next; // set current block to the one we just read
+                    next = SysLib.bytes2int(readBlock, 0); // next block to read
+                    if (next == -1) {
+                        // we found the last free block
+                        // set the current block to point to blockID
+                        SysLib.int2bytes(blockID, readBlock, 0);
+                        SysLib.rawwrite(current, readBlock);
+                        // write writeBlock to disk
+                        SysLib.rawwrite(blockID, writeBlock);
+                        return true;
+                    }
                 }
             }
         }
@@ -145,9 +150,3 @@ class SuperBlock
         }
     }
 }
-
-/*
-* Questions:
-*
-*
-*/

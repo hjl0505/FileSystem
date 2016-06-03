@@ -34,7 +34,7 @@ public class Directory
 
       // fill in the fnames array
 
-
+      return -1;
    }
 
    public byte[] directory2bytes()
@@ -54,7 +54,7 @@ public class Directory
       }
 
       // convert the fnames array
-
+      return data;
    }
 
    public short ialloc(String filename)
@@ -84,10 +84,11 @@ public class Directory
       fsize[iNumber] = 0;
       for (int i = 0; i < fnames[iNumber].length; i++)
       {
-          fnames[iNumber][i] = '';
+          //fnames[iNumber][i] = '';
       }
 
       // the corresponding file will be deleted.
+      return false;
 
    }
 

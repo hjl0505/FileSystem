@@ -25,7 +25,7 @@
       <file leaf-file-name="FileSystem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FileSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1156">
+            <state relative-caret-position="377">
               <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
               <folding>
                 <element signature="e#0#5302#0" expanded="true" />
@@ -60,11 +60,10 @@
       <file leaf-file-name="SuperBlock.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SuperBlock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+            <state relative-caret-position="102">
+              <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
               <folding>
-                <element signature="e#0#4889#0" expanded="true" />
-                <element signature="method#SuperBlock#0;class#SuperBlock#0" expanded="false" />
+                <element signature="method#format#0;class#SuperBlock#0" expanded="false" />
                 <element signature="method#sync#0;class#SuperBlock#0" expanded="false" />
                 <element signature="method#getBlock#0;class#SuperBlock#0" expanded="false" />
                 <element signature="method#returnBlock#0;class#SuperBlock#0" expanded="false" />
@@ -448,7 +447,6 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -580,8 +578,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#4889#0" expanded="true" />
-            <element signature="method#SuperBlock#0;class#SuperBlock#0" expanded="false" />
+            <element signature="method#format#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#sync#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#getBlock#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#returnBlock#0;class#SuperBlock#0" expanded="false" />
@@ -646,8 +643,7 @@
         <state relative-caret-position="408">
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
-            <element signature="e#0#4889#0" expanded="true" />
-            <element signature="method#SuperBlock#0;class#SuperBlock#0" expanded="false" />
+            <element signature="method#format#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#sync#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#getBlock#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#returnBlock#0;class#SuperBlock#0" expanded="false" />
@@ -719,6 +715,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/FileSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#5302#0" expanded="true" />
+            <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
+            <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
+            <element signature="method#format#0;class#FileSystem#0" expanded="false" />
+            <element signature="method#close#0;class#FileSystem#0" expanded="false" />
+            <element signature="method#fsize#0;class#FileSystem#0" expanded="false" />
+            <element signature="method#seek#0;class#FileSystem#0" expanded="false" />
+            <element signature="e#4680#4681#0" expanded="true" />
+            <element signature="e#4705#4706#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Inode.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="672">
@@ -778,31 +792,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FileSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#5302#0" expanded="true" />
-            <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
-            <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
-            <element signature="method#format#0;class#FileSystem#0" expanded="false" />
-            <element signature="method#close#0;class#FileSystem#0" expanded="false" />
-            <element signature="method#fsize#0;class#FileSystem#0" expanded="false" />
-            <element signature="method#seek#0;class#FileSystem#0" expanded="false" />
-            <element signature="e#4680#4681#0" expanded="true" />
-            <element signature="e#4705#4706#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SuperBlock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+        <state relative-caret-position="102">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
           <folding>
-            <element signature="e#0#4889#0" expanded="true" />
-            <element signature="method#SuperBlock#0;class#SuperBlock#0" expanded="false" />
+            <element signature="method#format#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#sync#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#getBlock#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#returnBlock#0;class#SuperBlock#0" expanded="false" />

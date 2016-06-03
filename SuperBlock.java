@@ -7,6 +7,7 @@ import java.util.Queue;
 
 class SuperBlock
 {
+   private final int MAX_INODES = 64;
    public int totalBlocks; // the number of disk blocks
    public int totalInodes; // the number of inodes
    public int freeList;    // the block number of the free list's head
@@ -15,15 +16,23 @@ class SuperBlock
     // Constructor
    public SuperBlock(int diskSize)
    {
-       totalBlocks = diskSize;
-       totalInodes = 0;
-       freeList = 1;
+       byte[] superBlock = new byte[Disk.blockSize];
+       SysLib.rawread(0, superBlock);
+       totalBlocks = SysLib.bytes2int(superBlock, 0);
+       totalInodes = SysLib.bytes2int(superBlock, 4);
+       freeList = SysLib.bytes2int(superBlock, 8);
+
+       if (totalBlocks != diskSize || totalInodes <= 0)
+       {
+           totalBlocks = diskSize;
+           format(MAX_INODES);
+       }
    }
 
    // Constructor: grab
 
-    // Formats the disk
-    // fileCount: number of inode blocks that the disk needs to free up
+   // Formats the disk
+   // fileCount: number of inode blocks that the disk needs to free up
    void format (int fileCount)
    {
        totalInodes = fileCount;
@@ -89,20 +98,22 @@ class SuperBlock
     {
         if (blockID < totalBlocks && blockID > 0)
         {
-            if (freeList == -1)
+            byte[] readBlock = new byte[Disk.blockSize];
+            byte[] writeBlock = new byte[Disk.blockSize];
+
+            // set writeBlock's next free block to -1
+            SysLib.int2bytes(-1, writeBlock, 0);
+
+            if (freeList == -1) // the free list was empty. point to blockID as head
             {
-                // return the block
+                freeList = blockID;
+                SysLib.rawwrite(blockID, writeBlock);
+                return true;
             }
             else
             {
-                byte[] readBlock = new byte[Disk.blockSize];
-                byte[] writeBlock = new byte[Disk.blockSize];
-
-                // set writeBlock's next free block to -1
-                SysLib.int2bytes(-1, writeBlock, 0);
-
                 int next = freeList;
-                int current = freeList;
+                int current = next;
 
                 // start reading from the freeList until you find the block with
                 //  -1 as the next free block
@@ -110,30 +121,19 @@ class SuperBlock
                     SysLib.rawread(next, readBlock);
                     current = next; // set current block to the one we just read
                     next = SysLib.bytes2int(readBlock, 0); // next block to read
-                    if (next == -1) {
-                        // we found the last free block
-                        // set the current block to point to blockID
-                        SysLib.int2bytes(blockID, readBlock, 0);
-                        SysLib.rawwrite(current, readBlock);
-                        // write writeBlock to disk
-                        SysLib.rawwrite(blockID, writeBlock);
-                        return true;
-                    }
                 }
+
+                // we found the last free block
+                // set the current block to point to blockID
+                SysLib.int2bytes(blockID, readBlock, 0);
+                SysLib.rawwrite(current, readBlock);
+
+                // write writeBlock to disk
+                SysLib.rawwrite(blockID, writeBlock);
+                return true;
             }
         }
         return false;
-    }
-
-    // Sets the last block's free pointer during formatting
-    void setLastBlock(byte[] block)
-    {
-        // get the last disk block
-        SysLib.rawread(999, block);
-        // make it point to a non existant disk block
-        SysLib.int2bytes(-1, block, 0);
-        // write last disk block back to disk
-        SysLib.rawwrite(999, block);
     }
 
     // Sets the freeList to the passed in int
@@ -148,5 +148,16 @@ class SuperBlock
         {
             return false;
         }
+    }
+
+    // Sets the last block's free pointer during formatting
+    private void setLastBlock(byte[] block)
+    {
+        // get the last disk block
+        SysLib.rawread(999, block);
+        // make it point to a non existant disk block
+        SysLib.int2bytes(-1, block, 0);
+        // write last disk block back to disk
+        SysLib.rawwrite(999, block);
     }
 }

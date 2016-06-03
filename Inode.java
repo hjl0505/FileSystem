@@ -48,6 +48,10 @@ public class Inode
 
    int toDisk(short iNumber) // save to disk as the i-th inode
    {
+      if (iNumber < 0)
+      {
+          return -1;
+      }
       // Get the disk where this Inode belongs
       // disk block = iNumber / 16
       byte[]data = new byte[Disk.blockSize];
@@ -63,6 +67,6 @@ public class Inode
           SysLib.short2bytes(direct[i], data, (startIndex + 8) + (2 * i));
       }
       SysLib.short2bytes(indirect, data, startIndex + 30);
-      return -1;
+      return 1;
    }
 }

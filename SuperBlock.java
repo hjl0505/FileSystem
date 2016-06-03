@@ -7,7 +7,7 @@ class SuperBlock
     // Constructor
    public SuperBlock(int diskSize)
    {
-       totalBlocks = diskSize / Disk.blockSize;
+       totalBlocks = diskSize;
        totalInodes = 0;
        freeList = 1;
    }
@@ -34,13 +34,16 @@ class SuperBlock
        }
        // set the last block's pointer to -1
        setLastBlock(block);
+
+       // write the formatted superBlock to disk
+       sync();
    }
 
     // Writes totalBlocks, totalInodes, and the freeList back to the Disk
     void sync ()
     {
         // create a new byte array to be copied to disk
-        byte[] block = new byte[Disk.blockSize];
+        byte[] superBlock = new byte[Disk.blockSize];
 
         // write totalBlocks to the block
         SysLib.int2bytes(totalBlocks, block, 0);
@@ -48,20 +51,44 @@ class SuperBlock
         SysLib.int2bytes(totalInodes, block, 4);
         // write the freeList to the block
         SysLib.int2bytes(freeList, block, 8);
+
+        // write the superBlock to disk
+        SysLib.rawwrite(0, superBlock);
+
     }
 
     // Finds and returns the blockID of the next free block from the freeList
     int getBlock()
     {
-        return freeList;
+        int index = freeList;
+        if (index != -1)
+        {
+            byte[] block = new byte[Disk.blockSize];
+            // read in the next-next free block
+            SysLib.rawread(index, block);
+            // set the new next free block
+            freeList = SysLib.bytes2int(block, 0);
+
+            // clear the return block's data
+            SysLib.int2bytes(0, block, 0);
+            SysLib.rawwrite(index, block);
+        }
+        return index;
     }
 
     // Add the blockID to the end of the freeList
     boolean returnBlock (int blockID)
     {
-        if (blockID < totalBlocks)
+        if (blockID < totalBlocks && freeList != -1)
         {
-            // do something
+            byte[] block = new byte[Disk.blockSize];
+            // read in EVERY SINGLE DISK BLOCK to find the one with -1
+            //  as the next free block
+
+            // set that disk block's next free block to blockID
+
+            // set blockID's next free block to -1
+
             return true;
         }
         return false;

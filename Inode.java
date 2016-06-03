@@ -10,7 +10,7 @@ public class Inode
 
    public int length;                             // file size in bytes
    public short count;                            // # file-table entries pointing to this
-   public short flag;                             // 0 = unused, 1 = used, ...
+   public short flag;                             // 0 = unused, 1 = used, 2 = pendingDelete
    public short direct[] = new short[directSize]; // direct pointers
    public short indirect;                         // a indirect pointer
 
@@ -30,7 +30,7 @@ public class Inode
    {
       // read in disk block where Inode lives
       // disk block = iNumber / 16
-      byte[] data = new byte[512];
+      byte[] data = new byte[Disk.blockSize];
       SysLib.rawread((iNumber / 16) + 1, data);
 
       // read Inodes 32 bytes within the disk block
@@ -41,16 +41,20 @@ public class Inode
       flag = SysLib.bytes2short(data, startIndex + 6);
       for (int i = 0; i < directSize; i++)
       {
-          //direct[i] + SysLib.bytes2short(data, (startIndex + 8) + (2 * i));
+          direct[i] = SysLib.bytes2short(data, (startIndex + 8) + (2 * i));
       }
       indirect = SysLib.bytes2short(data, startIndex + 30);
    }
 
    int toDisk(short iNumber) // save to disk as the i-th inode
    {
+      if (iNumber < 0)
+      {
+          return -1;
+      }
       // Get the disk where this Inode belongs
       // disk block = iNumber / 16
-      byte[]data = new byte[512];
+      byte[]data = new byte[Disk.blockSize];
       SysLib.rawread((iNumber / 16) + 1, data);
 
       // Inode bytes within disk block start at (iNumber % 16) * 32
@@ -63,6 +67,6 @@ public class Inode
           SysLib.short2bytes(direct[i], data, (startIndex + 8) + (2 * i));
       }
       SysLib.short2bytes(indirect, data, startIndex + 30);
-      return -1;
+      return 1;
    }
 }

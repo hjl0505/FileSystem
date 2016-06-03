@@ -45,4 +45,18 @@ public class FileTable
    {
       return table.isEmpty( );
    }
+
+   // Gets the specified Inode via iNumber lookup through FileTableEntries
+   public synchronized Inode getInode(int iNumber)
+   {
+       for (int i = 0; i < table.size(); i++)
+       {
+           if (table.get(i).iNumber == (short) i)
+           {
+               return table.get(i).inode;
+           }
+       }
+       // error
+       return null;
+   }
 }

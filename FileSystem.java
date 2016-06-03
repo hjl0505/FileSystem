@@ -52,6 +52,9 @@ public class FileSystem
     // Formats the disk with maximum number of files/Inodes to be created
     boolean format(int fileCount)
     {
+        // check that no FileTableEntries are in the FileTable
+
+
         superBlock.format(fileCount);
         directory = new Directory(superBlock.totalInodes);
         fileTable = new FileTable(directory);
@@ -89,6 +92,8 @@ public class FileSystem
     // return size of the file in bytes
     int fsize(FileTableEntry entry)
     {
+        // decrement Inode count
+        // if count is 0 after decrementing, write Inode to disk
         synchronized (entry)
         {
             return entry.inode.length;
@@ -151,6 +156,17 @@ public class FileSystem
     // new attempts to open the file will fail
     boolean delete(String filename)
     {
+        // search the directory for the filename
+
+        // if the filename was found, get the Inode from the FileTableEntry
+
+        // set the Inode's flag to 2 (delete pending)
+
+        // if the Inode count is = 0
+
+        // call the directory's ifree method
+
+        // return true
 
         return false;
     }

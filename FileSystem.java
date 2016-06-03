@@ -89,16 +89,13 @@ public class FileSystem
     // return size of the file in bytes
     int fsize(FileTableEntry entry)
     {
-<<<<<<< HEAD
         // decrement Inode count
         // if count is 0 after decrementing, write Inode to disk
-=======
         synchronized (entry)
         {
             return entry.inode.length;
         }
     }
->>>>>>> 219dccf1c2bf60f6c6d2b0be0e438ed3ce7364c9
 
     // updates the seek pointer in the file table entry
     int seek(FileTableEntry entry, int offset, int whence)
@@ -142,7 +139,7 @@ public class FileSystem
         synchronized (entry)
         {
 
-           
+
         }
     }
 
@@ -156,6 +153,17 @@ public class FileSystem
     // new attempts to open the file will fail
     boolean delete(String filename)
     {
+        // search the directory for the filename
+
+        // if the filename was found, get the Inode from the FileTableEntry
+
+        // set the Inode's flag to 2 (delete pending)
+
+        // if the Inode count is = 0
+
+        // call the directory's ifree method
+
+        // return true
 
         return false;
     }

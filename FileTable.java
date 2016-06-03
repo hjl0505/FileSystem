@@ -27,8 +27,8 @@ public class FileTable
       FileTableEntry ftEnt;
       // allocate/retrieve and register the corresponding inode using dir
       short inumber = dir.namei(filename);
-      // if the file doesn't exist in the directory
-      if (inumber == -1)
+      // if the file doesn't exist in the directory and mode isn't read
+      if (inumber == -1 && !mode.equals("r"))
       {
           // allocate an inumber for the file
           inumber = dir.ialloc(filename);
@@ -36,10 +36,14 @@ public class FileTable
           Inode node = new Inode();
           ftEnt = new FileTableEntry(node, inumber, mode);
       }
-      else
+      else if (0 < inumber)
       {
           Inode node = new Inode(inumber);
           ftEnt = new FileTableEntry(node, inumber, mode);
+      }
+      else
+      {
+          return null;
       }
 
       // allocate a new file (structure) table entry for this file name

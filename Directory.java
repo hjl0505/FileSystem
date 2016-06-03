@@ -90,7 +90,7 @@ public class Directory
       for (int i = 0; i < fsize.length; i++)
       {
           // find the next free iNumber (aka fsize index)
-          if (fsize[i] != 0)
+          if (fsize[i] == 0)
           {
               // record the filename length
               fsize[i] = filename.length();
@@ -119,6 +119,7 @@ public class Directory
 
       // deallocate this inumber (inode number)
       fsize[iNumber] = 0;
+      // clear the fnames array for this inumber
       for (int i = 0; i < fnames[iNumber].length; i++)
       {
           fnames[iNumber][i] = '';

@@ -1,8 +1,16 @@
+/*
+* Edited By Chris Knakal and Hyungjin Lee
+* CSS 430 Program 5
+*/
+
+import java.util.Queue;
+
 class SuperBlock
 {
    public int totalBlocks; // the number of disk blocks
    public int totalInodes; // the number of inodes
    public int freeList;    // the block number of the free list's head
+
 
     // Constructor
    public SuperBlock(int diskSize)
@@ -79,17 +87,35 @@ class SuperBlock
     // Add the blockID to the end of the freeList
     boolean returnBlock (int blockID)
     {
-        if (blockID < totalBlocks && freeList != -1)
+        if (blockID < totalBlocks && blockID > 0 && freeList != -1)
         {
-            byte[] block = new byte[Disk.blockSize];
-            // read in EVERY SINGLE DISK BLOCK to find the one with -1
-            //  as the next free block
+            byte[] readBlock = new byte[Disk.blockSize];
+            byte[] writeBlock = new byte[Disk.blockSize];
 
-            // set that disk block's next free block to blockID
+            // set writeBlock's next free block to -1
+            SysLib.int2bytes(-1, writeBlock, 0);
 
-            // set blockID's next free block to -1
+            int next = freeList;
+            int current = freeList;
 
-            return true;
+            // start reading from the freeList until you find the block with
+            //  -1 as the next free block
+            while(next != -1)
+            {
+                SysLib.rawread(next, readBlock);
+                current = next; // set current block to the one we just read
+                next = SysLib.bytes2int(readBlock, 0); // next block to read
+                if (next == -1)
+                {
+                    // we found the last free block
+                    // set the current block to point to blockID
+                    SysLib.int2bytes(blockID, readBlock, 0);
+                    SysLib.rawwrite(current, readBlock);
+                    // write writeBlock to disk
+                    SysLib.rawwrite(blockID, writeBlock);
+                    return true;
+                }
+            }
         }
         return false;
     }

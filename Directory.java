@@ -58,7 +58,7 @@ public class Directory
       // into bytes.
 
       // directory gets its own disk block
-      byte[] data = new byte[Disk.blockSize()];
+      byte[] data = new byte[Disk.blockSize];
       int offset = 0;
 
       // convert the fsize array into bytes

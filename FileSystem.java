@@ -52,6 +52,9 @@ public class FileSystem
     // Formats the disk with maximum number of files/Inodes to be created
     boolean format(int fileCount)
     {
+        // check that no FileTableEntries are in the FileTable
+
+
         superBlock.format(fileCount);
         directory = new Directory(superBlock.totalInodes);
         fileTable = new FileTable(directory);

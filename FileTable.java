@@ -22,20 +22,51 @@ public class FileTable
    // major public methods
    public synchronized FileTableEntry falloc(String filename, String mode)
    {
-      // allocate a new file (structure) table entry for this file name
+      FileTableEntry ftEnt;
       // allocate/retrieve and register the corresponding inode using dir
+      short inumber = dir.namei(filename);
+      // if the file doesn't exist in the directory
+      if (inumber == -1)
+      {
+          // allocate an inumber for the file
+          inumber = dir.ialloc(filename);
+          // create an inode for the file
+          Inode node = new Inode();
+          ftEnt = new FileTableEntry(node, inumber, mode);
+      }
+      else
+      {
+          Inode node = new Inode(inumber);
+          ftEnt = new FileTableEntry(node, inumber, mode);
+      }
+
+      // allocate a new file (structure) table entry for this file name
+      table.addElement(ftEnt);
       // increment this inode's count
+      ftEnt.inode.count++;
+      // add inode to the inodeList
+      inodeList.addElement(ftEnt.inode);
       // immediately write back this inode to the disk
+      ftEnt.inode.toDisk();
       // return a reference to this file (structure) table entry
-      return null;
+      return ftEnt;
    }
 
    public synchronized boolean ffree(FileTableEntry e)
    {
       // receive a file table entry reference
-      // save the corresponding inode to the disk
-      // free this file table entry.
-      // return true if this file table entry found in my table
+      for (int i = 0; i < table.size(); i++)
+      {
+          if (table.get(i).equals(e))
+          {
+              // save the corresponding inode to the disk
+              table.get(i).inode.toDisk();
+              // free this file table entry.
+              table.remove(i);
+              // return true if this file table entry found in my table
+              return true;
+          }
+      }
       return false;
    }
 

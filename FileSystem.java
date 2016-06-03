@@ -52,9 +52,11 @@ public class FileSystem
     // Formats the disk with maximum number of files/Inodes to be created
     boolean format(int fileCount)
     {
-        // check that no FileTableEntries are in the FileTable
-
-
+        while(!fileTable.fempty())
+        {
+            // check that no FileTableEntries are in the FileTable
+            // wait for the file table to empty
+        }
         superBlock.format(fileCount);
         directory = new Directory(superBlock.totalInodes);
         fileTable = new FileTable(directory);
@@ -132,13 +134,15 @@ public class FileSystem
     // Returns the number of bytes read or -1 for error
     int read(FileTableEntry entry, byte[] buffer)
     {
+        // The mode for entry should be r or w+
         if (entry == null || entry.mode.equals("w") || entry.mode.equals("a"))
         {
             return -1;
         }
 
-
-
+        int filesize = fsize(entry);
+        int bufferIdx = 0;
+        int bufferRemaining = buffer.length;
         synchronized (entry)
         {
 

@@ -72,4 +72,27 @@ public class Inode
       SysLib.rawwrite(block, data);
       return 1;
    }
+
+   int getBlockID (int seekPtr) //returns the block that contains the seekPtr
+   {
+       int tempID = seekPtr / Disk.blockSize;
+       int blockID = -1;
+       if (tempID < directSize)
+       {
+            blockID = direct[tempID];
+       }
+       else if (indirect != -1)
+       {
+            byte[] indirectData = new byte[Disk.blockSize];
+            SysLib.rawread(indirect, indirectData);
+            int offset = (tempID - directSize) * 2;
+            blockID = SysLib.bytes2short(indirectData, offset); // *short to int
+       }
+       return blockID;
+   }
+
+    int addBlock (int freeBlock, int seekPtr)
+    {
+
+    }
 }

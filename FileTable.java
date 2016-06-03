@@ -2,12 +2,10 @@
 // CSS 430 Program 5
 // 5/30/2016
 
-
 import java.util.Vector;
 
 public class FileTable
 {
-
    private Vector table;         // the actual entity of this file table
    private Directory dir;        // the root directory
 
@@ -20,6 +18,10 @@ public class FileTable
    }                             // from the file system
 
    // major public methods
+
+   // Allocates new file table entry for the filename
+   // Allocate and retrieve the corresponding inode
+   // Returns reference to the file table entry
    public synchronized FileTableEntry falloc(String filename, String mode)
    {
       FileTableEntry ftEnt;

@@ -25,30 +25,27 @@
       <file leaf-file-name="FileSystem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FileSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1156">
-              <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+            <state relative-caret-position="2771">
+              <caret line="222" column="17" selection-start-line="222" selection-start-column="17" selection-end-line="222" selection-end-column="17" />
               <folding>
-                <element signature="e#0#5302#0" expanded="true" />
-                <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
+                <element signature="e#0#8676#0" expanded="true" />
                 <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
                 <element signature="method#format#0;class#FileSystem#0" expanded="false" />
                 <element signature="method#close#0;class#FileSystem#0" expanded="false" />
                 <element signature="method#fsize#0;class#FileSystem#0" expanded="false" />
                 <element signature="method#seek#0;class#FileSystem#0" expanded="false" />
-                <element signature="e#4680#4681#0" expanded="true" />
-                <element signature="e#4705#4706#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Inode.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Inode.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Inode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="50" column="3" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
+            <state relative-caret-position="782">
+              <caret line="96" column="5" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
               <folding>
-                <element signature="e#0#2551#0" expanded="true" />
+                <element signature="e#0#3177#0" expanded="true" />
                 <element signature="method#Inode#0;class#Inode#0" expanded="false" />
                 <element signature="method#Inode#1;class#Inode#0" expanded="false" />
                 <element signature="method#toDisk#0;class#Inode#0" expanded="false" />
@@ -57,14 +54,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SuperBlock.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SuperBlock.java">
+      <file leaf-file-name="FileTableEntry.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FileTableEntry.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
-              <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SuperBlock.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SuperBlock.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="410">
+              <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
               <folding>
-                <element signature="e#0#4889#0" expanded="true" />
-                <element signature="method#SuperBlock#0;class#SuperBlock#0" expanded="false" />
+                <element signature="e#0#4893#0" expanded="true" />
+                <element signature="method#format#0;class#SuperBlock#0" expanded="false" />
                 <element signature="method#sync#0;class#SuperBlock#0" expanded="false" />
                 <element signature="method#getBlock#0;class#SuperBlock#0" expanded="false" />
                 <element signature="method#returnBlock#0;class#SuperBlock#0" expanded="false" />
@@ -87,10 +94,22 @@
       <file leaf-file-name="Directory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Directory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1785">
-              <caret line="142" column="23" selection-start-line="142" selection-start-column="23" selection-end-line="142" selection-end-column="23" />
+            <state relative-caret-position="493">
+              <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
               <folding>
                 <element signature="e#0#4570#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileTable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FileTable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
+              <folding>
+                <element signature="e#0#2913#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,9 +120,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="714">
               <caret line="69" column="29" selection-start-line="68" selection-start-column="6" selection-end-line="69" selection-end-column="29" />
-              <folding>
-                <element signature="e#0#4432#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -124,9 +141,9 @@
         <option value="$PROJECT_DIR$/Kernel.java" />
         <option value="$PROJECT_DIR$/Directory.java" />
         <option value="$PROJECT_DIR$/FileTable.java" />
-        <option value="$PROJECT_DIR$/FileSystem.java" />
-        <option value="$PROJECT_DIR$/Inode.java" />
         <option value="$PROJECT_DIR$/SuperBlock.java" />
+        <option value="$PROJECT_DIR$/Inode.java" />
+        <option value="$PROJECT_DIR$/FileSystem.java" />
       </list>
     </option>
   </component>
@@ -182,8 +199,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -448,12 +465,10 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -462,13 +477,15 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -489,7 +506,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -500,18 +517,94 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/FileSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="1156">
+          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
           <folding>
-            <element signature="e#0#5302#0" expanded="true" />
-            <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
+            <element signature="e#0#8676#0" expanded="true" />
             <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
             <element signature="method#format#0;class#FileSystem#0" expanded="false" />
             <element signature="method#close#0;class#FileSystem#0" expanded="false" />
             <element signature="method#fsize#0;class#FileSystem#0" expanded="false" />
             <element signature="method#seek#0;class#FileSystem#0" expanded="false" />
-            <element signature="e#4680#4681#0" expanded="true" />
-            <element signature="e#4705#4706#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="50" column="3" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#3177#0" expanded="true" />
+            <element signature="method#Inode#0;class#Inode#0" expanded="false" />
+            <element signature="method#Inode#1;class#Inode#0" expanded="false" />
+            <element signature="method#toDisk#0;class#Inode#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SuperBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="139" column="19" selection-start-line="139" selection-start-column="19" selection-end-line="139" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#4893#0" expanded="true" />
+            <element signature="method#format#0;class#SuperBlock#0" expanded="false" />
+            <element signature="method#sync#0;class#SuperBlock#0" expanded="false" />
+            <element signature="method#getBlock#0;class#SuperBlock#0" expanded="false" />
+            <element signature="method#returnBlock#0;class#SuperBlock#0" expanded="false" />
+            <element signature="method#setLastBlock#0;class#SuperBlock#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test5.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Directory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2380">
+          <caret line="142" column="23" selection-start-line="142" selection-start-column="23" selection-end-line="142" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#4570#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FileTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#2913#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../FS_orig/Inode.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="69" column="29" selection-start-line="68" selection-start-column="6" selection-end-line="69" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FileSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#8676#0" expanded="true" />
+            <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
+            <element signature="method#format#0;class#FileSystem#0" expanded="false" />
+            <element signature="method#close#0;class#FileSystem#0" expanded="false" />
+            <element signature="method#fsize#0;class#FileSystem#0" expanded="false" />
+            <element signature="method#seek#0;class#FileSystem#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -537,7 +630,7 @@
         <state relative-caret-position="1071">
           <caret line="65" column="16" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
           <folding>
-            <element signature="e#0#2551#0" expanded="true" />
+            <element signature="e#0#3177#0" expanded="true" />
             <element signature="method#Inode#0;class#Inode#0" expanded="false" />
             <element signature="method#Inode#1;class#Inode#0" expanded="false" />
             <element signature="method#toDisk#0;class#Inode#0" expanded="false" />
@@ -550,7 +643,7 @@
         <state relative-caret-position="2363">
           <caret line="143" column="43" selection-start-line="143" selection-start-column="43" selection-end-line="143" selection-end-column="43" />
           <folding>
-            <element signature="e#0#14794#0" expanded="true" />
+            <element signature="e#0#14794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -560,7 +653,7 @@
         <state relative-caret-position="442">
           <caret line="28" column="64" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
           <folding>
-            <element signature="e#0#2760#0" expanded="true" />
+            <element signature="e#0#2913#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -580,8 +673,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#4889#0" expanded="true" />
-            <element signature="method#SuperBlock#0;class#SuperBlock#0" expanded="false" />
+            <element signature="e#0#4893#0" expanded="true" />
+            <element signature="method#format#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#sync#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#getBlock#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#returnBlock#0;class#SuperBlock#0" expanded="false" />
@@ -595,15 +688,12 @@
         <state relative-caret-position="697">
           <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
           <folding>
-            <element signature="e#0#5302#0" expanded="true" />
-            <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
+            <element signature="e#0#8676#0" expanded="true" />
             <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
             <element signature="method#format#0;class#FileSystem#0" expanded="false" />
             <element signature="method#close#0;class#FileSystem#0" expanded="false" />
             <element signature="method#fsize#0;class#FileSystem#0" expanded="false" />
             <element signature="method#seek#0;class#FileSystem#0" expanded="false" />
-            <element signature="e#4680#4681#0" expanded="true" />
-            <element signature="e#4705#4706#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -613,7 +703,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#2551#0" expanded="true" />
+            <element signature="e#0#3177#0" expanded="true" />
             <element signature="method#Inode#0;class#Inode#0" expanded="false" />
             <element signature="method#Inode#1;class#Inode#0" expanded="false" />
             <element signature="method#toDisk#0;class#Inode#0" expanded="false" />
@@ -626,7 +716,7 @@
         <state relative-caret-position="663">
           <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
           <folding>
-            <element signature="e#0#2760#0" expanded="true" />
+            <element signature="e#0#2913#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -646,8 +736,8 @@
         <state relative-caret-position="408">
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
-            <element signature="e#0#4889#0" expanded="true" />
-            <element signature="method#SuperBlock#0;class#SuperBlock#0" expanded="false" />
+            <element signature="e#0#4893#0" expanded="true" />
+            <element signature="method#format#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#sync#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#getBlock#0;class#SuperBlock#0" expanded="false" />
             <element signature="method#returnBlock#0;class#SuperBlock#0" expanded="false" />
@@ -678,44 +768,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FileSystem.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FileTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="47" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#2760#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FileTableEntry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test5.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../FS_orig/FileTableEntry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -723,17 +779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="672">
           <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../FS_orig/Inode.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="69" column="29" selection-start-line="68" selection-start-column="6" selection-end-line="69" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#4432#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -742,7 +787,7 @@
         <state relative-caret-position="170">
           <caret line="143" column="43" selection-start-line="143" selection-start-column="43" selection-end-line="143" selection-end-column="43" />
           <folding>
-            <element signature="e#0#14794#0" expanded="true" />
+            <element signature="e#0#14794#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -755,58 +800,97 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Test5.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../FS_orig/Inode.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="69" column="29" selection-start-line="68" selection-start-column="6" selection-end-line="69" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FileSystem.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FileTableEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SuperBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#4893#0" expanded="true" />
+            <element signature="method#format#0;class#SuperBlock#0" expanded="false" />
+            <element signature="method#sync#0;class#SuperBlock#0" expanded="false" />
+            <element signature="method#getBlock#0;class#SuperBlock#0" expanded="false" />
+            <element signature="method#returnBlock#0;class#SuperBlock#0" expanded="false" />
+            <element signature="method#setLastBlock#0;class#SuperBlock#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Directory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="142" column="23" selection-start-line="142" selection-start-column="23" selection-end-line="142" selection-end-column="23" />
+        <state relative-caret-position="493">
+          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
           <folding>
             <element signature="e#0#4570#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Inode.java">
+    <entry file="file://$PROJECT_DIR$/FileTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="50" column="3" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
+        <state relative-caret-position="476">
+          <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
           <folding>
-            <element signature="e#0#2551#0" expanded="true" />
-            <element signature="method#Inode#0;class#Inode#0" expanded="false" />
-            <element signature="method#Inode#1;class#Inode#0" expanded="false" />
-            <element signature="method#toDisk#0;class#Inode#0" expanded="false" />
+            <element signature="e#0#2913#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FileSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+        <state relative-caret-position="2771">
+          <caret line="222" column="17" selection-start-line="222" selection-start-column="17" selection-end-line="222" selection-end-column="17" />
           <folding>
-            <element signature="e#0#5302#0" expanded="true" />
-            <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
+            <element signature="e#0#8676#0" expanded="true" />
             <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
             <element signature="method#format#0;class#FileSystem#0" expanded="false" />
             <element signature="method#close#0;class#FileSystem#0" expanded="false" />
             <element signature="method#fsize#0;class#FileSystem#0" expanded="false" />
             <element signature="method#seek#0;class#FileSystem#0" expanded="false" />
-            <element signature="e#4680#4681#0" expanded="true" />
-            <element signature="e#4705#4706#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SuperBlock.java">
+    <entry file="file://$PROJECT_DIR$/Inode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+        <state relative-caret-position="782">
+          <caret line="96" column="5" selection-start-line="96" selection-start-column="5" selection-end-line="96" selection-end-column="5" />
           <folding>
-            <element signature="e#0#4889#0" expanded="true" />
-            <element signature="method#SuperBlock#0;class#SuperBlock#0" expanded="false" />
-            <element signature="method#sync#0;class#SuperBlock#0" expanded="false" />
-            <element signature="method#getBlock#0;class#SuperBlock#0" expanded="false" />
-            <element signature="method#returnBlock#0;class#SuperBlock#0" expanded="false" />
-            <element signature="method#setLastBlock#0;class#SuperBlock#0" expanded="false" />
+            <element signature="e#0#3177#0" expanded="true" />
+            <element signature="method#Inode#0;class#Inode#0" expanded="false" />
+            <element signature="method#Inode#1;class#Inode#0" expanded="false" />
+            <element signature="method#toDisk#0;class#Inode#0" expanded="false" />
           </folding>
         </state>
       </provider>

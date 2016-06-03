@@ -7,6 +7,7 @@ public class FileSystem
     private final int SEEK_SET = 0;
     private final int SEEK_CUR = 1;
     private final int SEEK_END = 2;
+    private final static int MAX_FILESIZE = 136704; // bytes
 
     private SuperBlock superBlock;
     private Directory directory;
@@ -140,19 +141,93 @@ public class FileSystem
             return -1;
         }
 
-        int filesize = fsize(entry);
-        int bufferIdx = 0;
-        int bufferRemaining = buffer.length;
         synchronized (entry)
         {
+            int filesize = fsize(entry);
+            int bytesRead = 0;
+            int bufferRemaining = buffer.length;
 
+            while (bufferRemaining > 0 && entry.seekPtr < filesize)
+            {
+                int blockID = entry.inode.getBlockID(entry.seekPtr); // block to read
+                if (blockID != -1)
+                {
+                    // read the whole block
+                    byte[] blockData = new byte[Disk.blockSize];
+                    SysLib.rawread(blockID, blockData);
+                    int startPoint = entry.seekPtr % Disk.blockSize;
 
+                    // Calculate how much to read from the data
+                    // must be less than filesize, block size, and remaining buffer size
+                    int blockDataToRead = Disk.blockSize - startPoint;
+                    int fileDataLeft = filesize - entry.seekPtr;
+                    int sizeToRead = Math.min(Math.min(blockDataToRead, fileDataLeft), bufferRemaining);
+
+                    // copy block data over to buffer
+                    System.arraycopy(blockData, startPoint, buffer, bytesRead, sizeToRead);
+
+                    // adjust seek pointer, total bytes read, and size of remaining buffer
+                    entry.seekPtr += sizeToRead;
+                    bytesRead += sizeToRead;
+                    bufferRemaining -= sizeToRead;
+                }
+            }
+            return bytesRead;
         }
     }
 
     int write(FileTableEntry entry, byte[] buffer)
     {
-        return -1;
+        // The mode for entry should be w, a, or w+
+        if (entry == null || entry.mode.equals("r"))
+        {
+            return -1;
+        }
+
+        synchronized (entry)
+        {
+            int filesize = fsize(entry);
+            int bytesWritten = 0;
+            int bufferRemaining = buffer.length;
+
+            while (bufferRemaining > 0 && filesize < MAX_FILESIZE)
+            {
+                int blockID = entry.inode.getBlockID(entry.seekPtr);
+                // Need to find free block and give it to inode
+                while (blockID == -1)
+                {
+                    int freeBlock = superBlock.getBlock();
+                    blockID = entry.inode.addBlock(freeBlock, entry.seekPtr);
+                }
+
+                // read the whole block
+                byte[] blockData = new byte[Disk.blockSize];
+                SysLib.rawread(blockID, blockData);
+                int startPoint = entry.seekPtr % Disk.blockSize;
+
+                // calculate how much to write to block
+                // must be less than block size and buffer remaining size
+                int blockSizeLeft = Disk.blockSize - startPoint;
+                int sizeToWrite = Math.min(blockSizeLeft, bufferRemaining);
+
+                // copy buffer data over to the blockData
+                System.arraycopy(buffer, bytesWritten, blockData, startPoint, sizeToWrite);
+
+                // adjust seek pointer, total bytes written, and size of remaining buffer
+                entry.seekPtr += sizeToWrite;
+                bytesWritten += sizeToWrite;
+                bufferRemaining -= sizeToWrite;
+
+                // adjust the file size
+                if (entry.seekPtr > filesize)
+                {
+                    entry.inode.length = entry.seekPtr;
+                }
+            }
+            // update inode on disk
+            entry.inode.toDisk(entry.iNumber);
+            return bytesWritten;
+        }
     }
 
     // delete file
@@ -161,9 +236,11 @@ public class FileSystem
     boolean delete(String filename)
     {
         // search the directory for the filename
-
+        short iNumber = directory.namei(filename);
         // if the filename was found, get the Inode from the FileTableEntry
-
+        if (iNumber != -1)
+        {
+        }
         // set the Inode's flag to 2 (delete pending)
 
         // if the Inode count is = 0

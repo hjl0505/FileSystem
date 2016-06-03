@@ -19,6 +19,7 @@ public class Inode
       length = 0;
       count = 0;
       flag = 1;
+      // initialize pointers to -1
       for ( int i = 0; i < directSize; i++ )
       {
           direct[i] = -1;
@@ -52,21 +53,23 @@ public class Inode
       {
           return -1;
       }
-      // Get the disk where this Inode belongs
+      // Get the disk block where this Inode belongs
       // disk block = iNumber / 16
       byte[]data = new byte[Disk.blockSize];
-      SysLib.rawread((iNumber / 16) + 1, data);
+      int block = ( iNumber/16 ) + 1;
+      SysLib.rawread((block, data);
 
       // Inode bytes within disk block start at (iNumber % 16) * 32
       int startIndex = (iNumber % 16) * 32;
       SysLib.int2bytes(length, data, startIndex);
       SysLib.short2bytes(count, data, startIndex + 4);
       SysLib.short2bytes(flag, data, startIndex + 6);
-      for (int i = 0; i < directSize; i++)
+      for (int i = 0; i < directSize; i++) // store direct pointers
       {
           SysLib.short2bytes(direct[i], data, (startIndex + 8) + (2 * i));
       }
-      SysLib.short2bytes(indirect, data, startIndex + 30);
+      SysLib.short2bytes(indirect, data, startIndex + 30); // store indirect pointer
+      SysLib.rawwrite(block, data);
       return 1;
    }
 }

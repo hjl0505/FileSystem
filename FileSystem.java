@@ -7,6 +7,8 @@ public class FileSystem
     private final int SEEK_SET = 0;
     private final int SEEK_CUR = 1;
     private final int SEEK_END = 2;
+
+    private final int ERROR = -1;
     private final static int MAX_FILESIZE = 136704; // bytes
 
     private SuperBlock superBlock;
@@ -109,7 +111,7 @@ public class FileSystem
         if (entry == null)
         {
             SysLib.cerr("File Table Entry is invalid");
-            return -1;
+            return ERROR;
         }
         synchronized (entry)
         {
@@ -138,7 +140,7 @@ public class FileSystem
         // The mode for entry should be r or w+
         if (entry == null || entry.mode.equals("w") || entry.mode.equals("a"))
         {
-            return -1;
+            return ERROR;
         }
 
         synchronized (entry)
@@ -181,7 +183,7 @@ public class FileSystem
         // The mode for entry should be w, a, or w+
         if (entry == null || entry.mode.equals("r"))
         {
-            return -1;
+            return ERROR;
         }
 
         synchronized (entry)
@@ -197,7 +199,12 @@ public class FileSystem
                 while (blockID == -1)
                 {
                     int freeBlock = superBlock.getBlock();
-                    blockID = entry.inode.addBlock(freeBlock, entry.seekPtr);
+                    if (!entry.inode.addBlock((short)freeBlock))
+                    {
+                        superBlock.returnBlock(freeBlock);
+                        return ERROR;
+                    }
+                    blockID = entry.inode.getBlockID(entry.seekPtr);
                 }
 
                 // read the whole block
@@ -210,8 +217,9 @@ public class FileSystem
                 int blockSizeLeft = Disk.blockSize - startPoint;
                 int sizeToWrite = Math.min(blockSizeLeft, bufferRemaining);
 
-                // copy buffer data over to the blockData
+                // copy buffer data over to the blockData and write to disk
                 System.arraycopy(buffer, bytesWritten, blockData, startPoint, sizeToWrite);
+                SysLib.rawwrite(blockID, blockData);
 
                 // adjust seek pointer, total bytes written, and size of remaining buffer
                 entry.seekPtr += sizeToWrite;
@@ -237,24 +245,57 @@ public class FileSystem
     {
         // search the directory for the filename
         short iNumber = directory.namei(filename);
-        // if the filename was found, get the Inode from the FileTableEntry
+
+        // if the filename was found, get the Inode from the FileTable
+        // set the Inode's flag to 2 (delete pending)
         if (iNumber != -1)
         {
+            Inode inode = fileTable.getInode(iNumber);
+            inode.flag = 2;
+
+            if (inode.count == 0)
+            {
+                directory.ifree(iNumber);
+            }
+            return true;
         }
-        // set the Inode's flag to 2 (delete pending)
-
-        // if the Inode count is = 0
-
-        // call the directory's ifree method
-
-        // return true
-
         return false;
     }
 
+    // clears and frees all the blocks the inode was pointing to
     private boolean deallocateAllBlocks(FileTableEntry entry)
     {
-        return true;
+        if (entry != null && entry.inode.count == 1)
+        {
+            // release indirect blocks and indirect block itself
+            byte[] indirectData = entry.inode.readIndirectData();
+            if (indirectData != null)
+            {
+                int offset = 0;
+                int block = SysLib.bytes2short(indirectData, offset);
+                while (block != -1 && offset < Disk.blockSize)
+                {
+                    superBlock.returnBlock(block);
+                    offset+=2;
+                    block = SysLib.bytes2short(indirectData, offset);
+                }
+            }
+            superBlock.returnBlock(entry.inode.indirect);
+
+            // release direct blocks
+            for (int i = 0; i < Inode.directSize; i++)
+            {
+                int blockID = entry.inode.direct[i];
+                if (blockID != -1)
+                {
+                    superBlock.returnBlock(blockID);
+                    entry.inode.direct[i] = -1;
+                }
+            }
+            entry.inode.toDisk(entry.iNumber);
+            return true;
+        }
+        return false;
     }
 
 }

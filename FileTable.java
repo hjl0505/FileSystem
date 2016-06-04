@@ -6,14 +6,12 @@ import java.util.Vector;
 
 public class FileTable
 {
-<<<<<<< HEAD
    private final static int UNUSED = 0;
    private final static int USED = 1;
-   private final static int WRITE = 2;
-   private final static int PENDING_DELETE = 3;
+   private final static int READ = 2;
+   private final static int WRITE = 3;
+   private final static int PENDING_DELETE = 4;
 
-=======
->>>>>>> e471486cce56f2c11a944d9de5f4401568e6638e
    private Vector table;         // the actual entity of this file table
    private Directory dir;        // the root directory
 
@@ -34,6 +32,7 @@ public class FileTable
    {
       short inumber = -1;
       Inode node = null;
+      // loop for synchronized threads
       while(true)
       {
           // allocate/retrieve and register the corresponding inode using dir
@@ -51,11 +50,19 @@ public class FileTable
           {
               // get the file from disk
               node = new Inode(inumber);
+
+              // if the inode is set to be deleted
+              if (node.flag == PENDING_DELETE)
+              {
+                  // no other threads may access the inode
+                  return null;
+              }
+
               // if the request mode is read
               if (mode.equals("r"))
               {
                   // if no other threads are writing, or the inode is pendingDelete
-                  if (node.flag != WRITE && node.flag != PENDING_DELETE)
+                  if (node.flag != WRITE)
                   {
                       node.flag = READ;
                       break;
@@ -71,6 +78,23 @@ public class FileTable
                       catch (Exception e){}
                   }
 
+              }
+              // if the request mode is write, write/read, or append
+              else
+              {
+                  if (node.flag != READ && node.flag != WRITE)
+                  {
+                      node.flag = WRITE;
+                      break;
+                  }
+                  else
+                  {
+                      try
+                      {
+                          wait();
+                      }
+                      catch (Exception e) {}
+                  }
               }
           }
           else
@@ -106,6 +130,8 @@ public class FileTable
           table.get(i).inode.toDisk();
           // free this file table entry.
           table.remove(i);
+          // notify all threads waiting for access to this inode
+          notifyAll();
           // return true if this file table entry found in my table
           return true;
       }

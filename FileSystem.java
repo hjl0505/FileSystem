@@ -247,11 +247,11 @@ public class FileSystem
         short iNumber = directory.namei(filename);
 
         // if the filename was found, get the Inode from the FileTable
-        // set the Inode's flag to 2 (delete pending)
+        // set the Inode's flag to 4 (delete pending)
         if (iNumber != -1)
         {
             Inode inode = fileTable.getInode(iNumber);
-            inode.flag = 2;
+            inode.flag = 4;
 
             if (inode.count == 0)
             {

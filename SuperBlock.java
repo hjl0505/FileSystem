@@ -37,7 +37,7 @@ class SuperBlock
    {
        totalBlocks = 1000;
        totalInodes = fileCount;
-       freeList = (fileCount / 16) + 1;
+       freeList = (fileCount / 16) + 2;
        for (short i = 0; i < totalInodes; i++)
        {
            Inode inode = new Inode();

@@ -46,11 +46,10 @@ class SuperBlock
        }
 
        // create the freeList linked list
-       byte[] block = new byte[Disk.blockSize];
+       byte[] block = null;
        for (int i = freeList; i < totalBlocks - 1; i++)
        {
-           // get this block from disk
-           SysLib.rawread(i, block);
+           block = new byte[Disk.blockSize];
            // set its first four bytes to point to the next free block
            SysLib.int2bytes(i + 1, block, 0);
            // write block back to disk
@@ -85,7 +84,7 @@ class SuperBlock
     int getBlock()
     {
         int index = freeList;
-        if (index != -1)
+        if (index > 0 && index < totalBlocks)
         {
             byte[] block = new byte[Disk.blockSize];
             // read in the next-next free block
@@ -96,8 +95,10 @@ class SuperBlock
             // clear the return block's data
             SysLib.int2bytes(0, block, 0);
             SysLib.rawwrite(index, block);
+            return index;
         }
-        return index;
+        // error
+        return -1;
     }
 
     // Add the blockID to the end of the freeList

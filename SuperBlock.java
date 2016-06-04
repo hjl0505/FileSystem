@@ -35,6 +35,7 @@ class SuperBlock
    // fileCount: number of inode blocks that the disk needs to free up
    void format (int fileCount)
    {
+       totalBlocks = 1000;
        totalInodes = fileCount;
        freeList = (fileCount / 16) + 1;
        for (short i = 0; i < totalInodes; i++)
@@ -46,10 +47,10 @@ class SuperBlock
 
        // create the freeList linked list
        byte[] block = new byte[Disk.blockSize];
-       for (int i = freeList; i < totalBlocks; i++)
+       for (int i = freeList; i < totalBlocks - 1; i++)
        {
            // get this block from disk
-           SysLib.rawread(i, block);
+           //SysLib.rawread(i, block);
            // set its first four bytes to point to the next free block
            SysLib.int2bytes(i + 1, block, 0);
            // write block back to disk
@@ -159,11 +160,9 @@ class SuperBlock
     // Sets the last block's free pointer during formatting
     private void setLastBlock(byte[] block)
     {
-        // get the last disk block
-        SysLib.rawread(999, block);
         // make it point to a non existant disk block
         SysLib.int2bytes(-1, block, 0);
         // write last disk block back to disk
-        SysLib.rawwrite(999, block);
+        SysLib.rawwrite(totalBlocks - 1, block);
     }
 }

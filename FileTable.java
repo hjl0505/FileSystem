@@ -36,7 +36,7 @@ public class FileTable
       while(true)
       {
           // allocate/retrieve and register the corresponding inode using dir
-          short inumber = dir.namei(filename);
+          inumber = dir.namei(filename);
           // if the file doesn't exist in the directory and mode isn't read
           if (inumber == -1 && !mode.equals("r"))
           {
@@ -112,7 +112,7 @@ public class FileTable
       // add inode to the inodeList
       inodeList.addElement(ftEnt.inode);
       // immediately write back this inode to the disk
-      ftEnt.inode.toDisk();
+      ftEnt.inode.toDisk(inumber);
       // return a reference to this file (structure) table entry
       return ftEnt;
    }
@@ -123,13 +123,13 @@ public class FileTable
       if (table.removeElement(e))
       {
           // decrement inode count
-          table.get(i).inode.count--;
+          e.inode.count--;
           // set the inode flag
-          table.get(i).inode.flag = UNUSED
+          e.inode.flag = UNUSED;
           // save the corresponding inode to the disk
-          table.get(i).inode.toDisk();
+          e.inode.toDisk(e.iNumber);
           // free this file table entry.
-          table.remove(i);
+          table.remove(e);
           // notify all threads waiting for access to this inode
           notifyAll();
           // return true if this file table entry found in my table
@@ -151,9 +151,10 @@ public class FileTable
    {
        for (int i = 0; i < table.size(); i++)
        {
-           if (table.get(i).iNumber == (short) i)
+           FileTableEntry temp = (FileTableEntry) table.elementAt(i);
+           if (temp.iNumber == (short) i)
            {
-               return table.get(i).inode;
+               return temp.inode;
            }
        }
        // error

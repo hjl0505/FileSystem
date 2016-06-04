@@ -16,47 +16,17 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="FileSystem.class" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/../FS_orig/FileSystem.class">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="-1224">
-                    <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="Inode.class" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/../FS_orig/Inode.class">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="1316">
-                    <caret line="88" column="4" selection-start-line="88" selection-start-column="4" selection-end-line="89" selection-end-column="25" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="FileSystem" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Test5.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Test5.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Test5.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="711">
-              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+            <state relative-caret-position="714">
+              <caret line="96" column="3" selection-start-line="96" selection-start-column="3" selection-end-line="96" selection-end-column="3" />
               <folding>
                 <element signature="method#test1#0;class#Test5#0" expanded="false" />
                 <element signature="method#test2#0;class#Test5#0" expanded="false" />
@@ -76,10 +46,9 @@
       <file leaf-file-name="FileSystem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FileSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
+            <state relative-caret-position="3026">
               <caret line="209" column="20" selection-start-line="209" selection-start-column="20" selection-end-line="209" selection-end-column="20" />
               <folding>
-                <element signature="e#0#12746#0" expanded="true" />
                 <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
                 <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
               </folding>
@@ -87,13 +56,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Inode.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Inode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Inode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
+            <state relative-caret-position="222">
               <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
               <folding>
-                <element signature="e#0#5713#0" expanded="true" />
                 <element signature="method#Inode#0;class#Inode#0" expanded="false" />
                 <element signature="method#Inode#1;class#Inode#0" expanded="false" />
                 <element signature="method#removeIndirectData#0;class#Inode#0" expanded="false" />
@@ -115,7 +83,7 @@
       <file leaf-file-name="Kernel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Kernel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="658">
+            <state relative-caret-position="3213">
               <caret line="193" column="22" selection-start-line="193" selection-start-column="22" selection-end-line="193" selection-end-column="22" />
               <folding />
             </state>
@@ -125,7 +93,7 @@
       <file leaf-file-name="Kernel.class" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Kernel.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-731">
+            <state relative-caret-position="1598">
               <caret line="94" column="25" selection-start-line="94" selection-start-column="25" selection-end-line="94" selection-end-column="25" />
               <folding />
             </state>
@@ -152,15 +120,16 @@
         <option value="$PROJECT_DIR$/../FS_orig/Kernel.java" />
         <option value="$PROJECT_DIR$/Kernel.java" />
         <option value="$PROJECT_DIR$/Inode.java" />
-        <option value="$PROJECT_DIR$/Test5.java" />
         <option value="$PROJECT_DIR$/FileSystem.java" />
+        <option value="$PROJECT_DIR$/Test5.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="768" />
-    <option name="width" value="1152" />
-    <option name="height" value="1040" />
+    <option name="x" value="1920" />
+    <option name="y" value="-120" />
+    <option name="width" value="960" />
+    <option name="height" value="1160" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -187,12 +156,29 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
-        <subPane />
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FileSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FileSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FileSystem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -452,7 +438,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="768" y="0" width="1152" height="1040" extended-state="0" />
+    <frame x="1920" y="-120" width="960" height="1160" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -464,7 +450,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18222222" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -537,7 +523,6 @@
         <state relative-caret-position="612">
           <caret line="65" column="12" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
           <folding>
-            <element signature="e#0#12746#0" expanded="true" />
             <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
             <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
           </folding>
@@ -549,9 +534,9 @@
         <state relative-caret-position="153">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
-            <element signature="e#0#5713#0" expanded="true" />
             <element signature="method#Inode#0;class#Inode#0" expanded="false" />
             <element signature="method#Inode#1;class#Inode#0" expanded="false" />
+            <element signature="method#removeIndirectData#0;class#Inode#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -596,9 +581,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1853">
           <caret line="109" column="37" selection-start-line="109" selection-start-column="37" selection-end-line="109" selection-end-column="37" />
-          <folding>
-            <element signature="e#4634#4635#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -614,7 +597,6 @@
         <state relative-caret-position="1156">
           <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
           <folding>
-            <element signature="e#0#12746#0" expanded="true" />
             <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
             <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
           </folding>
@@ -626,9 +608,9 @@
         <state relative-caret-position="391">
           <caret line="50" column="3" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
           <folding>
-            <element signature="e#0#5713#0" expanded="true" />
             <element signature="method#Inode#0;class#Inode#0" expanded="false" />
             <element signature="method#Inode#1;class#Inode#0" expanded="false" />
+            <element signature="method#removeIndirectData#0;class#Inode#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -665,9 +647,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#4634#4635#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -683,7 +663,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#12746#0" expanded="true" />
             <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
             <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
           </folding>
@@ -710,9 +689,9 @@
         <state relative-caret-position="1071">
           <caret line="65" column="16" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
           <folding>
-            <element signature="e#0#5713#0" expanded="true" />
             <element signature="method#Inode#0;class#Inode#0" expanded="false" />
             <element signature="method#Inode#1;class#Inode#0" expanded="false" />
+            <element signature="method#removeIndirectData#0;class#Inode#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -728,9 +707,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="28" column="64" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
-          <folding>
-            <element signature="e#4634#4635#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -760,7 +737,6 @@
         <state relative-caret-position="697">
           <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
           <folding>
-            <element signature="e#0#12746#0" expanded="true" />
             <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
             <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
           </folding>
@@ -772,9 +748,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#5713#0" expanded="true" />
             <element signature="method#Inode#0;class#Inode#0" expanded="false" />
             <element signature="method#Inode#1;class#Inode#0" expanded="false" />
+            <element signature="method#removeIndirectData#0;class#Inode#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -783,9 +759,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding>
-            <element signature="e#4634#4635#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -866,9 +840,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1819">
           <caret line="109" column="37" selection-start-line="109" selection-start-column="37" selection-end-line="109" selection-end-column="37" />
-          <folding>
-            <element signature="e#4634#4635#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -904,7 +876,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2091">
           <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -926,7 +897,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Kernel.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-731">
+        <state relative-caret-position="1598">
           <caret line="94" column="25" selection-start-line="94" selection-start-column="25" selection-end-line="94" selection-end-column="25" />
           <folding />
         </state>
@@ -934,7 +905,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Kernel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
+        <state relative-caret-position="3213">
           <caret line="193" column="22" selection-start-line="193" selection-start-column="22" selection-end-line="193" selection-end-column="22" />
           <folding />
         </state>
@@ -942,7 +913,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../FS_orig/Inode.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1316">
+        <state relative-caret-position="1411">
           <caret line="88" column="4" selection-start-line="88" selection-start-column="4" selection-end-line="89" selection-end-column="25" />
           <folding />
         </state>
@@ -950,16 +921,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../FS_orig/FileSystem.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1224">
+        <state relative-caret-position="0">
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/FileSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3026">
+          <caret line="209" column="20" selection-start-line="209" selection-start-column="20" selection-end-line="209" selection-end-column="20" />
+          <folding>
+            <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
+            <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Inode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
+          <folding>
+            <element signature="method#Inode#0;class#Inode#0" expanded="false" />
+            <element signature="method#Inode#1;class#Inode#0" expanded="false" />
+            <element signature="method#removeIndirectData#0;class#Inode#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Test5.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="711">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+        <state relative-caret-position="714">
+          <caret line="96" column="3" selection-start-line="96" selection-start-column="3" selection-end-line="96" selection-end-column="3" />
           <folding>
             <element signature="method#test1#0;class#Test5#0" expanded="false" />
             <element signature="method#test2#0;class#Test5#0" expanded="false" />
@@ -971,31 +965,6 @@
             <element signature="method#test8#0;class#Test5#0" expanded="false" />
             <element signature="method#test9#0;class#Test5#0" expanded="false" />
             <element signature="method#test11#0;class#Test5#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FileSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="209" column="20" selection-start-line="209" selection-start-column="20" selection-end-line="209" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#12746#0" expanded="true" />
-            <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
-            <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Inode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#5713#0" expanded="true" />
-            <element signature="method#Inode#0;class#Inode#0" expanded="false" />
-            <element signature="method#Inode#1;class#Inode#0" expanded="false" />
-            <element signature="method#removeIndirectData#0;class#Inode#0" expanded="false" />
           </folding>
         </state>
       </provider>

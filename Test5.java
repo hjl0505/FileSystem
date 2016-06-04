@@ -48,7 +48,7 @@ class Test5 extends Thread {
     if ( test15( ) ) // open "bothell" with "w+"
       SysLib.cout("Correct behavior of read/writing a large file.0.5\n");
 
-    //if ( test16( ) ) // delete "css430"
+    if ( test16( ) ) // delete "css430"
       SysLib.cout("Correct behavior of delete....................0.5\n");
     if ( test17( ) ) // create "uwb0" - "uwb45" of buf[512 * 13]
       SysLib.cout("Correct behavior of creating over 40 files ...0.5\n");

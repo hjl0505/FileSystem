@@ -8,17 +8,19 @@ public class Directory
    private static int NAME_BYTES = 60; // 30 character * 2 bytes = 60 bytes
 
    // Directory entries
-   private short fsize[];        // each element stores a different file size.
+   private int fsize[];        // each element stores a different file size.
    private char fnames[][];    // each element stores a different file name.
 
    public Directory(int maxInumber) // directory constructor
    {
-      fsize = new short[maxInumber];     // maxInumber = max files
+	  SysLib.cout("MY DIRECTORY \n");
+	  
+      fsize = new int[maxInumber];     // maxInumber = max files
       for (int i = 0; i < maxInumber; i++)
          fsize[i] = 0;                 // all file size initialized to 0
       fnames = new char[maxInumber][maxChars];
       String root = "/";                // entry(inode) 0 is "/"
-      fsize[0] = (short)root.length();        // fsize[0] is the size of "/".
+      fsize[0] = root.length();        // fsize[0] is the size of "/".
       root.getChars(0, fsize[0], fnames[0], 0); // fnames[0] includes "/"
    }
 
@@ -30,29 +32,20 @@ public class Directory
       int offset = 0;
 
       // fill in the fsize array
-      for (int i = 0; i < fsize.length; i++)
+      for (int i = 0; i < fsize.length; offset += 4)
       {
-          fsize[i] = SysLib.bytes2short(data, (i * 2));
-          offset += 2;
+          fsize[i] = SysLib.bytes2short(data, offset);
+          i++;
       }
 
       // fill in the fnames array
-      for (int j = 0; j < fnames.length; j++)
+      for (int j = 0; j < fnames.length; offset += maxChars * 2)
       {
-          String name = new String(data, offset, NAME_BYTES);
+          String name = new String(data, offset, maxChars * 2);
           name.getChars(0, fsize[j], fnames[j], 0);
-          offset += NAME_BYTES;
-          /*
-          for (int k = 0; k < fnames[j].length; k++)
-          {
-              // take 2 bytes from data[] to make char
-              fnames[j][k] = (char) (data[offset] + data[offset + 1]);
-              // increase the offset by 2 bytes
-              offset += 2;
-          }
-          */
-      }
+		  j++;
 
+      }
       return 1;
    }
 
@@ -64,55 +57,44 @@ public class Directory
       // into bytes.
 
       // directory gets its own disk block
-      byte[] data = new byte[Disk.blockSize];
+      byte[] data = new byte[(4 * fsize.length) + (fsize.length * maxChars * 2)];
       int offset = 0;
 
       // convert the fsize array into bytes
-      for (int i = 0; i < fsize.length; i++)
-      {
-          SysLib.short2bytes(fsize[i], data, (i * 2));
-          offset += 2;
-      }
+        for (int i = 0; i < fsize.length; offset += 4) 
+		{
+            SysLib.int2bytes(fsize[i], data, offset);
+			i++;
+        }
 
       // convert the fnames array into bytes
-      for (int j = 0; j < fnames.length; j++)
+      for (int j = 0; j < fnames.length; offset += maxChars * 2)
       {
           String name = new String(fnames[j], 0, fsize[j]);
           byte[] temp = name.getBytes();
           System.arraycopy(temp, 0, data, offset, temp.length);
-          offset += NAME_BYTES;
-          /*
-          for (int k = 0; k < fnames[j].length; k++)
-          {
-
-              // put each character into the buffer
-              data[offset] = (byte)fnames[j][k];
-              // offset by char byte size (2 bytes)
-              offset += 2;
-          }
-          */
+		  j++;
       }
-
       return data;
    }
 
    public short ialloc(String filename)
-   {
+   {   
       // filename is the one of a file to be created.
       // allocates a new inode number for this filename
-      for (int i = 0; i < fsize.length; i++)
+      for (int i = 1; i < fsize.length; i++)
       {
           // find the next free iNumber (aka fsize index)
           if (fsize[i] == 0)
           {
               // record the filename length
-              fsize[i] = (short)filename.length();
+              fsize[i] = Math.min(filename.length(), maxChars);
               // put the file name in the fnames array
               filename.getChars(0, fsize[i], fnames[i], 0);
               // return the index as a short to be this file's iNumber
               return (short)i;
           }
-      }
+      }	  
       // No free iNumbers left in the directory
       return (short) -1;
    }
@@ -120,51 +102,33 @@ public class Directory
    /*
    * Deletes the Inode in memory by dereferencing the Inumber.
    * The Inode data stays in memeory, but will be overwritten by
-   *  the next Inode to occupy the same disk space.
+   * the next Inode to occupy the same disk space.
    */
    public boolean ifree(short iNumber)
    {
-      // check if the iNumber is currently being used
-      if (fsize[iNumber] == 0)
-      {
-          return false;
-      }
-
-      // deallocate this inumber (inode number)
-      fsize[iNumber] = 0;
-      // clear the fnames array for this inumber
-      for (int i = 0; i < fnames[iNumber].length; i++)
-      {
-          fnames[iNumber][i] = '0';
-      }
-
-      // the corresponding file will be deleted.
-      return true;
-
+		if (fsize[iNumber] > 0)
+		{
+			fsize[iNumber] = 0;
+			return true;
+		}
+		return false;
    }
 
    public short namei(String filename)
    {
-      // returns the inumber corresponding to this filename
-      for (int i = 0; i < fsize.length; i++)
-      {
-          // if the length of the file names are the same and
-          //  the strings are the same
-          if (fsize[i] == filename.length() && filename.equals(String.valueOf(fnames[i])));
-          {
-              // return the index
-              return (short)i;
-          }
-      }
-      // file not found
-      return (short) -1;
+	    // returns the inumber corresponding to this filename
+        for (int i = 0; i < fsize.length; i++) 
+		{
+			// if the length of the file names are the same and
+			//  the strings are the same
+            String otherFile = new String(fnames[i], 0, fsize[i]);
+            // make sure the size matches and strings match
+            if (fsize[i] == filename.length() && filename.equals(otherFile)) 
+			{
+                // return the index
+                return (short)i;
+            }
+        }
+        return -1;
    }
 }
-
-
-/*
-* Questions:
-*  How do I convert the character array to bytes?
-*  How do I delete the file from the directory?
-*
-*/

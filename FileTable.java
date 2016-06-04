@@ -46,10 +46,12 @@ public class FileTable
               node = new Inode();
           }
           // if the file does exist in the directory
-          else if (0 < inumber)
+          else if (inumber >= 0)
           {
               // get the file from disk
               node = new Inode(inumber);
+              SysLib.cout("Inumber: " + inumber + "\n");
+              SysLib.cout("Inode count: " + node.count + "\n");
 
               // if the inode is set to be deleted
               if (node.flag == PENDING_DELETE)
@@ -82,7 +84,7 @@ public class FileTable
               // if the request mode is write, write/read, or append
               else
               {
-                  if (node.flag != READ && node.flag != WRITE)
+                  if (node.flag == USED || node.flag == UNUSED)
                   {
                       node.flag = WRITE;
                       break;
@@ -109,10 +111,10 @@ public class FileTable
       table.addElement(ftEnt);
       // increment this inode's count
       ftEnt.inode.count++;
-      // add inode to the inodeList
-      inodeList.addElement(ftEnt.inode);
       // immediately write back this inode to the disk
       ftEnt.inode.toDisk(inumber);
+      // add inode to the inodeList
+      //inodeList.addElement(ftEnt.inode);
       // return a reference to this file (structure) table entry
       return ftEnt;
    }

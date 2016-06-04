@@ -5,6 +5,7 @@
 public class Directory
 {
    private static int maxChars = 30; // max characters of each file name
+   private static int NAME_BYTES = 60; // 30 character * 2 bytes = 60 bytes
 
    // Directory entries
    private short fsize[];        // each element stores a different file size.
@@ -38,6 +39,10 @@ public class Directory
       // fill in the fnames array
       for (int j = 0; j < fnames.length; j++)
       {
+          String name = new String(data, offset, NAME_BYTES);
+          name.getChars(0, fsize[j], fnames[j], 0);
+          offset += NAME_BYTES;
+          /*
           for (int k = 0; k < fnames[j].length; k++)
           {
               // take 2 bytes from data[] to make char
@@ -45,6 +50,7 @@ public class Directory
               // increase the offset by 2 bytes
               offset += 2;
           }
+          */
       }
 
       return 1;
@@ -71,13 +77,20 @@ public class Directory
       // convert the fnames array into bytes
       for (int j = 0; j < fnames.length; j++)
       {
+          String name = new String(fnames[j], 0, fsize[j]);
+          byte[] temp = name.getBytes();
+          System.arraycopy(temp, 0, data, offset, temp.length);
+          offset += NAME_BYTES;
+          /*
           for (int k = 0; k < fnames[j].length; k++)
           {
+
               // put each character into the buffer
               data[offset] = (byte)fnames[j][k];
               // offset by char byte size (2 bytes)
               offset += 2;
           }
+          */
       }
 
       return data;

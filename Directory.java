@@ -131,7 +131,12 @@ public class Directory
       }
 
       // deallocate this inumber (inode number)
-      fsize[iNumber] = 0;
+      if (fsize[iNumber] > 0)
+      {
+          fsize[iNumber] = 0;
+          return true;
+      }
+      /*
       // clear the fnames array for this inumber
       for (int i = 0; i < fnames[iNumber].length; i++)
       {
@@ -139,7 +144,8 @@ public class Directory
       }
 
       // the corresponding file will be deleted.
-      return true;
+      */
+      return false;
 
    }
 

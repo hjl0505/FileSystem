@@ -50,7 +50,7 @@ class SuperBlock
        for (int i = freeList; i < totalBlocks - 1; i++)
        {
            // get this block from disk
-           //SysLib.rawread(i, block);
+           SysLib.rawread(i, block);
            // set its first four bytes to point to the next free block
            SysLib.int2bytes(i + 1, block, 0);
            // write block back to disk

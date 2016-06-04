@@ -7,6 +7,10 @@ import java.util.Vector;
 
 public class FileTable
 {
+   private final static int UNUSED = 0;
+   private final static int USED = 1;
+   private final static int WRITE = 2;
+   private final static int PENDING_DELETE = 3;
 
    private Vector table;         // the actual entity of this file table
    private Directory dir;        // the root directory
@@ -22,28 +26,55 @@ public class FileTable
    // major public methods
    public synchronized FileTableEntry falloc(String filename, String mode)
    {
-      FileTableEntry ftEnt;
-      // allocate/retrieve and register the corresponding inode using dir
-      short inumber = dir.namei(filename);
-      // if the file doesn't exist in the directory and mode isn't read
-      if (inumber == -1 && !mode.equals("r"))
+      short inumber = -1;
+      Inode node = null;
+      while(true)
       {
-          // allocate an inumber for the file
-          inumber = dir.ialloc(filename);
-          // create an inode for the file
-          Inode node = new Inode();
-          ftEnt = new FileTableEntry(node, inumber, mode);
-      }
-      else if (0 < inumber)
-      {
-          Inode node = new Inode(inumber);
-          ftEnt = new FileTableEntry(node, inumber, mode);
-      }
-      else
-      {
-          return null;
+          // allocate/retrieve and register the corresponding inode using dir
+          short inumber = dir.namei(filename);
+          // if the file doesn't exist in the directory and mode isn't read
+          if (inumber == -1 && !mode.equals("r"))
+          {
+              // allocate an inumber for the file
+              inumber = dir.ialloc(filename);
+              // create an inode for the file
+              node = new Inode();
+          }
+          // if the file does exist in the directory
+          else if (0 < inumber)
+          {
+              // get the file from disk
+              node = new Inode(inumber);
+              // if the request mode is read
+              if (mode.equals("r"))
+              {
+                  // if no other threads are writing, or the inode is pendingDelete
+                  if (node.flag != WRITE && node.flag != PENDING_DELETE)
+                  {
+                      node.flag = READ;
+                      break;
+                  }
+                  // else other threads are writing to the inode
+                  else
+                  {
+                      try
+                      {
+                          // wait for writing thread to get done
+                          wait();
+                      }
+                      catch (Exception e){}
+                  }
+
+              }
+          }
+          else
+          {
+              return null;
+          }
       }
 
+
+      FileTableEntry ftEnt = new FileTableEntry(node, inumber, mode);
       // allocate a new file (structure) table entry for this file name
       table.addElement(ftEnt);
       // increment this inode's count
@@ -58,19 +89,21 @@ public class FileTable
 
    public synchronized boolean ffree(FileTableEntry e)
    {
-      // receive a file table entry reference
-      for (int i = 0; i < table.size(); i++)
+      // if you can remove the file table entry from the file table
+      if (table.removeElement(e))
       {
-          if (table.get(i).equals(e))
-          {
-              // save the corresponding inode to the disk
-              table.get(i).inode.toDisk();
-              // free this file table entry.
-              table.remove(i);
-              // return true if this file table entry found in my table
-              return true;
-          }
+          // decrement inode count
+          table.get(i).inode.count--;
+          // set the inode flag
+          table.get(i).inode.flag = UNUSED
+          // save the corresponding inode to the disk
+          table.get(i).inode.toDisk();
+          // free this file table entry.
+          table.remove(i);
+          // return true if this file table entry found in my table
+          return true;
       }
+      // file table entry not removed
       return false;
    }
 

@@ -10,7 +10,7 @@ public class Inode
 
    public int length;                             // file size in bytes
    public short count;                            // # file-table entries pointing to this
-   public short flag;                             // 0 = unused, 1 = used, 2 = pendingDelete
+   public short flag;                             // 0 = unused, 1 = used, 2 = read, 3 = write, 4 = pendingDelete
    public short direct[] = new short[directSize]; // direct pointers
    public short indirect;                         // a indirect pointer
 

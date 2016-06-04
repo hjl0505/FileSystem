@@ -209,21 +209,49 @@ public class FileSystem
                     else if (inodeStatus == Inode.INDIRECT_EMPTY)
                     {
                         SysLib.cout("is indirect empty? \n");
-                        if (!entry.inode.addIndirectBlock(freeBlock)) // attempt to set index to new location
+                        short indirectBlock = (short) superBlock.getBlock(); // get another block for indirect pointer
+                        if (!entry.inode.addIndirectBlock(indirectBlock)) // attempt to set index to new location
                         {
+                            SysLib.cout("addingIndirectBlock? \n");
+                            return ERROR;
+                        }
+                        if (entry.inode.addBlock(entry.seekPtr, freeBlock) != Inode.INODE_AVAILABLE) {
+                            SysLib.cout("addBlock? \n");
                             return ERROR;
                         }
 
-                        freeBlock = (short) superBlock.getBlock(); // get another block for indirect pointer
-                        if ( entry.inode.addBlock(entry.seekPtr, freeBlock) != Inode.INODE_AVAILABLE )
-                        {
-                            return ERROR;
-                        }
                     }
-
                     // update location
                     blockID = freeBlock;
                 }
+
+               /* if (blockID == -1) { // need find a free block
+                    short freeBlock = (short) superBlock.getBlock();
+                    // attempt to submit block, then act based on return code
+                    int status = entry.inode.addBlock(entry.seekPtr, freeBlock);
+                    switch ( status )
+                    // 1 = good to write, -1 = in use, 0 = indirect is empty
+                    {
+                        case Inode.INODE_FULL:
+                            SysLib.cerr("Filesystem error on write\n");
+                            return -1;
+                        case Inode.INDIRECT_EMPTY: // indirect is empty, search for new location
+                            freeBlock = (short) superBlock.getBlock();
+                            status = entry.inode.addBlock(entry.seekPtr, freeBlock); // attempt to submit location
+                            if (!entry.inode.addIndirectBlock((short) status)) { // attempt to set index to new location
+                                SysLib.cerr("Filesystem error on write\n");
+                                return -1;
+                            }
+                            // attempt submit block again
+                            if ( entry.inode.addBlock(entry.seekPtr, freeBlock) != Inode.INODE_AVAILABLE ) {
+                                SysLib.cerr("Filesystem error on write\n");
+                                return -1;
+                            }
+                            break;
+                    }
+                    // update location
+                    blockID = freeBlock;
+                } */
 
                 // read the whole block
                 byte[] blockData = new byte[Disk.blockSize];
@@ -286,7 +314,7 @@ public class FileSystem
         if (entry != null && entry.inode.count == 1)
         {
             // release indirect blocks and indirect block itself
-            byte[] indirectData = entry.inode.readIndirectData();
+            byte[] indirectData = entry.inode.removeIndirectData();
             if (indirectData != null)
             {
                 int offset = 0;

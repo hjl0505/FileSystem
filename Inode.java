@@ -90,7 +90,8 @@ public class Inode
        }
        else if (indirect != -1)
        {
-            byte[] indirectData = readIndirectData();
+           byte[] indirectData = new byte[Disk.blockSize];
+           SysLib.rawread(indirect, indirectData);
             int offset = (tempID - directSize) * 2;
             blockID = SysLib.bytes2short(indirectData, offset); // *short to int
        }
@@ -113,7 +114,7 @@ public class Inode
         }
         else
         {
-            byte[] indirectData = readIndirectData();
+            byte[] indirectData = new byte[Disk.blockSize];
             SysLib.rawread(indirect, indirectData);
             int offset = 0;
             short blockID = SysLib.bytes2short(indirectData, offset);
@@ -134,8 +135,9 @@ public class Inode
         return INODE_AVAILABLE;
     }
 
-    byte[] readIndirectData ()
+    byte[] removeIndirectData ()
     {
+        SysLib.cout("Remove Indirect Data called \n");
         if (indirect != -1)
         {
             byte[] indirectData = new byte[Disk.blockSize];
@@ -154,11 +156,13 @@ public class Inode
         {
             if (direct[i] == -1)
             {
+                SysLib.cout("DIRECT BLOCK ERROR");
                 return false;
             }
         }
         if (indirect != -1)
         {
+            SysLib.cout("INDIRECT BLOCK ERROR");
             return false; // indirect is already set
         }
         else

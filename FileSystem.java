@@ -299,6 +299,13 @@ public class FileSystem
     // new attempts to open the file will fail
     boolean delete(String filename)
     {
+        FileTableEntry ftEnt = open(filename, "w");
+        if (directory.ifree(ftEnt.iNumber) && close(ftEnt))
+        {
+            return true;
+        }
+        return false;
+        /*
         // search the directory for the filename
         short iNumber = directory.namei(filename);
 
@@ -316,6 +323,7 @@ public class FileSystem
             return true;
         }
         return false;
+        */
     }
 
     // clears and frees all the blocks the inode was pointing to

@@ -87,14 +87,20 @@ public class Inode
        if (tempID < directSize)
        {
             blockID = direct[tempID];
+            //SysLib.cout("Inode: Getting direct block: " + blockID + "\n");
+            //SysLib.cout("Inode:   from direct[" + tempID + "]\n");
        }
        else if (indirect != -1)
        {
+           //SysLib.cout("Inode: Getting indirect block " + blockID);
            byte[] indirectData = new byte[Disk.blockSize];
            SysLib.rawread(indirect, indirectData);
             int offset = (tempID - directSize) * 2;
             blockID = SysLib.bytes2short(indirectData, offset); // *short to int
        }
+       //SysLib.cout("Inode: tempID = " + tempID + "\n");
+       //SysLib.cout("Inode: Indirect points to disk block " + indirect + "\n");
+       //SysLib.cout("Inode: Returning Block ID " + blockID + ".\n");
        return blockID;
    }
 
@@ -109,7 +115,7 @@ public class Inode
         }
         else if (indirect == -1)
         {
-            indirect = freeBlock;
+            //indirect = freeBlock;  BADDDDDDDDDD. SOOOO BADDDDDDDD. BUGGGGGGGGGGGGGGGGG.
             return INDIRECT_EMPTY;
         }
         else
@@ -137,7 +143,7 @@ public class Inode
 
     byte[] removeIndirectData ()
     {
-        SysLib.cout("Remove Indirect Data called \n");
+        SysLib.cout("Inode: Remove Indirect Data called \n");
         if (indirect != -1)
         {
             byte[] indirectData = new byte[Disk.blockSize];
@@ -156,13 +162,13 @@ public class Inode
         {
             if (direct[i] == -1)
             {
-                SysLib.cout("DIRECT BLOCK ERROR");
+                SysLib.cout("DIRECT BLOCK ERROR\n");
                 return false;
             }
         }
         if (indirect != -1)
         {
-            SysLib.cout("INDIRECT BLOCK ERROR");
+            SysLib.cout("Inode: INDIRECT BLOCK ERROR\n");
             return false; // indirect is already set
         }
         else

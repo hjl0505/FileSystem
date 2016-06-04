@@ -195,30 +195,39 @@ public class FileSystem
             while (bufferRemaining > 0 && filesize < MAX_FILESIZE)
             {
                 int blockID = entry.inode.getBlockID(entry.seekPtr);
+                //SysLib.cout("\nFileSystem: I'm going to try to write to BlockID = " + blockID + ".\n");
+                //SysLib.cout("FileSystem: Buffer Remaining = " + bufferRemaining + "\n");
 
                 // Need to find free block and give it to inode
                 if (blockID == -1) {
+                    //SysLib.cout("FileSystem: Need to find free block for Inode to write to.\n");
                     short freeBlock = (short) superBlock.getBlock();
+                    //SysLib.cout("FileSystem: I'll write to freeBlock = " + freeBlock + "\n");
                     int inodeStatus = entry.inode.addBlock(entry.seekPtr, freeBlock);
+                    //SysLib.cout("FileSystem: Inode Status = " + inodeStatus + "\n");
 
-                    if (inodeStatus ==Inode.INODE_FULL)
+                    if (inodeStatus == Inode.INODE_FULL)
                     {
                         SysLib.cout("INODE is FULL \n");
                         return ERROR;
                     }
                     else if (inodeStatus == Inode.INDIRECT_EMPTY)
                     {
-                        SysLib.cout("is indirect empty? \n");
-                        short indirectBlock = (short) superBlock.getBlock(); // get another block for indirect pointer
+                        //SysLib.cout("\nFileSystem: Inode's indirect is empty \n");
+                        short indirectBlock = freeBlock; // set the indirect equal to the current free block
                         if (!entry.inode.addIndirectBlock(indirectBlock)) // attempt to set index to new location
                         {
-                            SysLib.cout("addingIndirectBlock? \n");
+                            SysLib.cout("FileSystem: I wasn't able to set the Inode's indirect block to = " + indirectBlock + "\n");
                             return ERROR;
                         }
-                        if (entry.inode.addBlock(entry.seekPtr, freeBlock) != Inode.INODE_AVAILABLE) {
-                            SysLib.cout("addBlock? \n");
+                        //SysLib.cout("FileSystem: I'm making Inode's indirect block = " + indirectBlock + "\n");
+                        freeBlock = (short) superBlock.getBlock(); // get a new freeBlock. Last one was used for indirect pointers.
+                        if (entry.inode.addBlock(entry.seekPtr, freeBlock) != Inode.INODE_AVAILABLE)
+                        {
+                            SysLib.cout("FileSystem: I WASN'T able to set an indirect block at block " + freeBlock + "\n");
                             return ERROR;
                         }
+                        //SysLib.cout("FileSystem: I set an indirect block at block " + freeBlock + "\n");
 
                     }
                     // update location
@@ -265,6 +274,7 @@ public class FileSystem
 
                 // copy buffer data over to the blockData and write to disk
                 System.arraycopy(buffer, bytesWritten, blockData, startPoint, sizeToWrite);
+                //SysLib.cout("FileSystem: Writing to Disk Block " + blockID + ".\n");
                 SysLib.rawwrite(blockID, blockData);
 
                 // adjust seek pointer, total bytes written, and size of remaining buffer

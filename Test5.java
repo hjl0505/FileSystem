@@ -54,7 +54,7 @@ class Test5 extends Thread {
       SysLib.cout("Correct behavior of creating over 40 files ...0.5\n");
     if ( test18( ) ) // "uwb1" read/written among Test5 and Test6
       SysLib.cout("Correct behavior of two fds to the same file..0.5\n");
-  
+
     SysLib.cout( "Test completed\n" );
     SysLib.exit( );
   }
@@ -245,7 +245,7 @@ class Test5 extends Thread {
     fd = SysLib.open( "css430", "w+" );
     SysLib.seek( fd, 24, 0 );
     SysLib.write( fd, buf24 );
-  
+
     SysLib.seek( fd, 0, 0 );
     byte[] tmpBuf = new byte[48];
     SysLib.read( fd, tmpBuf );
@@ -291,15 +291,18 @@ class Test5 extends Thread {
 
   private boolean test10( ) {
     //.............................................."
+    //SysLib.cout("=======================================================================================\n");
     SysLib.cout( "10: size = write( fd, buf[6656] )." );
     for ( int i = 0; i < 6656; i++ )
       buf6656[i] = ( byte )( i % 256 );
     size = SysLib.write( fd, buf6656 );
     if ( size != 6656 ) {
       SysLib.cout( "size = " + size + " (wrong)\n" );
+      //SysLib.cout("=======================================================================================\n");
       return false;
     }
     SysLib.cout( "successfully completed\n" );
+    //SysLib.cout("=======================================================================================\n");
     return true;
   }
 
@@ -439,7 +442,7 @@ class Test5 extends Thread {
     fd = SysLib.open( "bothell", "w+" );
     SysLib.seek( fd, 512 * 12 - 3, 0 );
     SysLib.write( fd, buf24 );
-  
+
     SysLib.seek( fd, 0, 0 );
     byte[] tmpBuf = new byte[6688];
     SysLib.read( fd, tmpBuf );

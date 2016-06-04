@@ -50,8 +50,6 @@ public class FileTable
           {
               // get the file from disk
               node = new Inode(inumber);
-              SysLib.cout("Inumber: " + inumber + "\n");
-              SysLib.cout("Inode count: " + node.count + "\n");
 
               // if the inode is set to be deleted
               if (node.flag == PENDING_DELETE)

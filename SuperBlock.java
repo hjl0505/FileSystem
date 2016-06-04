@@ -37,6 +37,12 @@ class SuperBlock
    {
        totalInodes = fileCount;
        freeList = (fileCount / 16) + 1;
+       for (short i = 0; i < totalInodes; i++)
+       {
+           Inode inode = new Inode();
+           inode.flag = 0;
+           inode.toDisk(i);
+       }
 
        // create the freeList linked list
        byte[] block = new byte[Disk.blockSize];

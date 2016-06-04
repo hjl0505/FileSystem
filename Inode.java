@@ -7,6 +7,9 @@ public class Inode
 {
    private final static int iNodeSize = 32;       // fix to 32 bytes
    public final static int directSize = 11;      // # direct pointers
+   public static final int INODE_FULL = -1;
+   public static final int INDIRECT_EMPTY = 0;
+   public static final int INODE_AVAILABLE = 1;
 
    public int length;                             // file size in bytes
    public short count;                            // # file-table entries pointing to this
@@ -95,38 +98,40 @@ public class Inode
    }
 
     // Add a free block to the inode
-    // Returns true if the block was successfully added, false otherwise
-    boolean addBlock (short freeBlock)
+    // Returns the status of the inode
+    int addBlock (int seekPtr, short freeBlock)
     {
-        int tempID = (length / Disk.blockSize) + 1 ;
-        if(tempID < directSize) // add block to direct
+        int tempID = (seekPtr / Disk.blockSize);
+        if(tempID < directSize)
         {
-            direct[tempID] = freeBlock;
+            direct[tempID] = freeBlock; // add to direct block
         }
-        else if (indirect == -1) // add block as indirect block
+        else if (indirect == -1)
         {
             indirect = freeBlock;
+            return INDIRECT_EMPTY;
         }
-        else // add block to indirect
+        else
         {
             byte[] indirectData = readIndirectData();
+            SysLib.rawread(indirect, indirectData);
             int offset = 0;
             short blockID = SysLib.bytes2short(indirectData, offset);
             while(blockID != -1)
             {
                 if (offset >= Disk.blockSize)
                 {
-                  return false; // Indirect block is full
+                  return INODE_FULL; // Indirect block is full
                 }
 
                 offset += 2;
                 blockID = SysLib.bytes2short(indirectData, offset);
             }
 
-            SysLib.short2bytes(freeBlock, indirectData, offset);
+            SysLib.short2bytes(freeBlock, indirectData, offset); // add block to indirect block
             SysLib.rawwrite(indirect, indirectData);
         }
-        return true;
+        return INODE_AVAILABLE;
     }
 
     byte[] readIndirectData ()
@@ -139,5 +144,35 @@ public class Inode
             return indirectData;
         }
         return null;
+    }
+
+    // Add an indirect block
+    // Returns false if indirect block is not added properly
+    boolean addIndirectBlock(short blockID) {
+        // Check to see if direct pointers are set first
+        for (int i = 0; i < directSize; i++)
+        {
+            if (direct[i] == -1)
+            {
+                return false;
+            }
+        }
+        if (indirect != -1)
+        {
+            return false; // indirect is already set
+        }
+        else
+        {
+            indirect = blockID;
+            byte[] data = new byte[Disk.blockSize];
+
+            for (int i = 0; i < Disk.blockSize / 2; i++) // initialize indirect pointers to -1
+            {
+                SysLib.short2bytes((short) -1, data, i * 2);
+            }
+
+            SysLib.rawwrite(blockID, data);
+            return true;
+        }
     }
 }

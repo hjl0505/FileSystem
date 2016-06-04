@@ -195,19 +195,35 @@ public class FileSystem
             while (bufferRemaining > 0 && filesize < MAX_FILESIZE)
             {
                 int blockID = entry.inode.getBlockID(entry.seekPtr);
-                SysLib.cout("HERE blockID = " + blockID + "\n");
+
                 // Need to find free block and give it to inode
-                /*while (blockID == -1)
-                {
-                    int freeBlock = superBlock.getBlock();
-                    if (!entry.inode.addBlock((short)freeBlock))
+                if (blockID == -1) {
+                    short freeBlock = (short) superBlock.getBlock();
+                    int inodeStatus = entry.inode.addBlock(entry.seekPtr, freeBlock);
+
+                    if (inodeStatus ==Inode.INODE_FULL)
                     {
-                        superBlock.returnBlock(freeBlock);
+                        SysLib.cout("INODE is FULL \n");
                         return ERROR;
                     }
-                    blockID = entry.inode.getBlockID(entry.seekPtr);
-                    SysLib.cout("HERE \n");
-                } */
+                    else if (inodeStatus == Inode.INDIRECT_EMPTY)
+                    {
+                        SysLib.cout("is indirect empty? \n");
+                        if (!entry.inode.addIndirectBlock(freeBlock)) // attempt to set index to new location
+                        {
+                            return ERROR;
+                        }
+
+                        freeBlock = (short) superBlock.getBlock(); // get another block for indirect pointer
+                        if ( entry.inode.addBlock(entry.seekPtr, freeBlock) != Inode.INODE_AVAILABLE )
+                        {
+                            return ERROR;
+                        }
+                    }
+
+                    // update location
+                    blockID = freeBlock;
+                }
 
                 // read the whole block
                 byte[] blockData = new byte[Disk.blockSize];

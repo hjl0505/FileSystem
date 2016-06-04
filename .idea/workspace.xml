@@ -22,32 +22,71 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Test5.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Test5.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Test5.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1921">
-              <caret line="113" column="38" selection-start-line="113" selection-start-column="38" selection-end-line="113" selection-end-column="38" />
-              <folding />
+            <state relative-caret-position="476">
+              <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
+              <folding>
+                <element signature="method#test1#0;class#Test5#0" expanded="false" />
+                <element signature="method#test2#0;class#Test5#0" expanded="false" />
+                <element signature="method#test3#0;class#Test5#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileSystem.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FileSystem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/FileSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="596">
-              <caret line="198" column="49" selection-start-line="198" selection-start-column="49" selection-end-line="198" selection-end-column="49" />
+            <state relative-caret-position="647">
+              <caret line="222" column="0" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
               <folding>
-                <element signature="e#0#10367#0" expanded="true" />
+                <element signature="e#0#11016#0" expanded="true" />
                 <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
                 <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
                 <element signature="method#open#0;class#FileSystem#0" expanded="false" />
                 <element signature="method#close#0;class#FileSystem#0" expanded="false" />
                 <element signature="method#fsize#0;class#FileSystem#0" expanded="false" />
                 <element signature="method#seek#0;class#FileSystem#0" expanded="false" />
-                <element signature="method#read#0;class#FileSystem#0" expanded="false" />
                 <element signature="method#deallocateAllBlocks#0;class#FileSystem#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Inode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Inode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="732">
+              <caret line="168" column="94" selection-start-line="168" selection-start-column="94" selection-end-line="168" selection-end-column="94" />
+              <folding>
+                <element signature="e#0#5494#0" expanded="true" />
+                <element signature="method#Inode#0;class#Inode#0" expanded="false" />
+                <element signature="method#Inode#1;class#Inode#0" expanded="false" />
+                <element signature="method#getBlockID#0;class#Inode#0" expanded="false" />
+                <element signature="method#readIndirectData#0;class#Inode#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SysLib.class" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SysLib.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Kernel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Kernel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="913">
+              <caret line="118" column="28" selection-start-line="118" selection-start-column="28" selection-end-line="118" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -66,22 +105,21 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/FileTable.java" />
-        <option value="$PROJECT_DIR$/Inode.java" />
         <option value="$PROJECT_DIR$/Directory.java" />
         <option value="$PROJECT_DIR$/SuperBlock.java" />
         <option value="$PROJECT_DIR$/../FS_orig/Kernel.class" />
         <option value="$PROJECT_DIR$/../FS_orig/Kernel.java" />
         <option value="$PROJECT_DIR$/Kernel.java" />
-        <option value="$PROJECT_DIR$/Test5.java" />
+        <option value="$PROJECT_DIR$/Inode.java" />
         <option value="$PROJECT_DIR$/FileSystem.java" />
+        <option value="$PROJECT_DIR$/Test5.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="577" />
+    <option name="width" value="1199" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -390,8 +428,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="577" y="0" width="1199" height="1040" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -402,7 +440,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1265625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14201184" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -433,7 +471,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1765625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14201184" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -470,26 +508,18 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../FS_orig/Inode.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2176">
-          <caret line="133" column="33" selection-start-line="133" selection-start-column="33" selection-end-line="133" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FileSystem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="65" column="12" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
           <folding>
-            <element signature="e#0#10367#0" expanded="true" />
+            <element signature="e#0#11016#0" expanded="true" />
             <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
             <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
             <element signature="method#open#0;class#FileSystem#0" expanded="false" />
             <element signature="method#close#0;class#FileSystem#0" expanded="false" />
             <element signature="method#fsize#0;class#FileSystem#0" expanded="false" />
             <element signature="method#seek#0;class#FileSystem#0" expanded="false" />
-            <element signature="method#read#0;class#FileSystem#0" expanded="false" />
             <element signature="method#deallocateAllBlocks#0;class#FileSystem#0" expanded="false" />
           </folding>
         </state>
@@ -500,7 +530,7 @@
         <state relative-caret-position="153">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
-            <element signature="e#0#4477#0" expanded="true" />
+            <element signature="e#0#5494#0" expanded="true" />
             <element signature="method#Inode#0;class#Inode#0" expanded="false" />
             <element signature="method#Inode#1;class#Inode#0" expanded="false" />
           </folding>
@@ -565,14 +595,13 @@
         <state relative-caret-position="1156">
           <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
           <folding>
-            <element signature="e#0#10367#0" expanded="true" />
+            <element signature="e#0#11016#0" expanded="true" />
             <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
             <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
             <element signature="method#open#0;class#FileSystem#0" expanded="false" />
             <element signature="method#close#0;class#FileSystem#0" expanded="false" />
             <element signature="method#fsize#0;class#FileSystem#0" expanded="false" />
             <element signature="method#seek#0;class#FileSystem#0" expanded="false" />
-            <element signature="method#read#0;class#FileSystem#0" expanded="false" />
             <element signature="method#deallocateAllBlocks#0;class#FileSystem#0" expanded="false" />
           </folding>
         </state>
@@ -583,7 +612,7 @@
         <state relative-caret-position="391">
           <caret line="50" column="3" selection-start-line="50" selection-start-column="3" selection-end-line="50" selection-end-column="3" />
           <folding>
-            <element signature="e#0#4477#0" expanded="true" />
+            <element signature="e#0#5494#0" expanded="true" />
             <element signature="method#Inode#0;class#Inode#0" expanded="false" />
             <element signature="method#Inode#1;class#Inode#0" expanded="false" />
           </folding>
@@ -640,14 +669,13 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#10367#0" expanded="true" />
+            <element signature="e#0#11016#0" expanded="true" />
             <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
             <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
             <element signature="method#open#0;class#FileSystem#0" expanded="false" />
             <element signature="method#close#0;class#FileSystem#0" expanded="false" />
             <element signature="method#fsize#0;class#FileSystem#0" expanded="false" />
             <element signature="method#seek#0;class#FileSystem#0" expanded="false" />
-            <element signature="method#read#0;class#FileSystem#0" expanded="false" />
             <element signature="method#deallocateAllBlocks#0;class#FileSystem#0" expanded="false" />
           </folding>
         </state>
@@ -673,7 +701,7 @@
         <state relative-caret-position="1071">
           <caret line="65" column="16" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
           <folding>
-            <element signature="e#0#4477#0" expanded="true" />
+            <element signature="e#0#5494#0" expanded="true" />
             <element signature="method#Inode#0;class#Inode#0" expanded="false" />
             <element signature="method#Inode#1;class#Inode#0" expanded="false" />
           </folding>
@@ -723,14 +751,13 @@
         <state relative-caret-position="697">
           <caret line="43" column="29" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
           <folding>
-            <element signature="e#0#10367#0" expanded="true" />
+            <element signature="e#0#11016#0" expanded="true" />
             <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
             <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
             <element signature="method#open#0;class#FileSystem#0" expanded="false" />
             <element signature="method#close#0;class#FileSystem#0" expanded="false" />
             <element signature="method#fsize#0;class#FileSystem#0" expanded="false" />
             <element signature="method#seek#0;class#FileSystem#0" expanded="false" />
-            <element signature="method#read#0;class#FileSystem#0" expanded="false" />
             <element signature="method#deallocateAllBlocks#0;class#FileSystem#0" expanded="false" />
           </folding>
         </state>
@@ -741,7 +768,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#4477#0" expanded="true" />
+            <element signature="e#0#5494#0" expanded="true" />
             <element signature="method#Inode#0;class#Inode#0" expanded="false" />
             <element signature="method#Inode#1;class#Inode#0" expanded="false" />
           </folding>
@@ -805,13 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="672">
           <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SysLib.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2006">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -890,62 +910,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Inode.java">
+    <entry file="file://$PROJECT_DIR$/../FS_orig/Kernel.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#4477#0" expanded="true" />
-            <element signature="method#Inode#0;class#Inode#0" expanded="false" />
-            <element signature="method#Inode#1;class#Inode#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="-2091">
+          <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Kernel.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="57" column="31" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="31" />
+        <state relative-caret-position="12">
+          <caret line="60" column="21" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../FS_orig/Kernel.class">
+    <entry file="file://$PROJECT_DIR$/SysLib.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="48" column="40" selection-start-line="48" selection-start-column="40" selection-end-line="48" selection-end-column="40" />
+        <state relative-caret-position="595">
+          <caret line="40" column="5" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Kernel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="709">
-          <caret line="100" column="51" selection-start-line="100" selection-start-column="51" selection-end-line="100" selection-end-column="51" />
+        <state relative-caret-position="913">
+          <caret line="118" column="28" selection-start-line="118" selection-start-column="28" selection-end-line="118" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Test5.java">
+    <entry file="file://$PROJECT_DIR$/Inode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1921">
-          <caret line="113" column="38" selection-start-line="113" selection-start-column="38" selection-end-line="113" selection-end-column="38" />
+        <state relative-caret-position="732">
+          <caret line="168" column="94" selection-start-line="168" selection-start-column="94" selection-end-line="168" selection-end-column="94" />
+          <folding>
+            <element signature="e#0#5494#0" expanded="true" />
+            <element signature="method#Inode#0;class#Inode#0" expanded="false" />
+            <element signature="method#Inode#1;class#Inode#0" expanded="false" />
+            <element signature="method#getBlockID#0;class#Inode#0" expanded="false" />
+            <element signature="method#readIndirectData#0;class#Inode#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SysLib.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FileSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="596">
-          <caret line="198" column="49" selection-start-line="198" selection-start-column="49" selection-end-line="198" selection-end-column="49" />
+        <state relative-caret-position="647">
+          <caret line="222" column="0" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
           <folding>
-            <element signature="e#0#10367#0" expanded="true" />
+            <element signature="e#0#11016#0" expanded="true" />
             <element signature="method#FileSystem#0;class#FileSystem#0" expanded="false" />
             <element signature="method#sync#0;class#FileSystem#0" expanded="false" />
             <element signature="method#open#0;class#FileSystem#0" expanded="false" />
             <element signature="method#close#0;class#FileSystem#0" expanded="false" />
             <element signature="method#fsize#0;class#FileSystem#0" expanded="false" />
             <element signature="method#seek#0;class#FileSystem#0" expanded="false" />
-            <element signature="method#read#0;class#FileSystem#0" expanded="false" />
             <element signature="method#deallocateAllBlocks#0;class#FileSystem#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test5.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
+          <folding>
+            <element signature="method#test1#0;class#Test5#0" expanded="false" />
+            <element signature="method#test2#0;class#Test5#0" expanded="false" />
+            <element signature="method#test3#0;class#Test5#0" expanded="false" />
           </folding>
         </state>
       </provider>

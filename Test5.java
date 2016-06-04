@@ -18,13 +18,13 @@ class Test5 extends Thread {
   }
 
   public void run( ) {
-    //if ( test1( ) ) // format with specified # of files
+    if ( test1( ) ) // format with specified # of files
       SysLib.cout("Correct behavior of format......................2\n");
-    //if ( test2( ) ) // open "css430" with "w+"
+    if ( test2( ) ) // open "css430" with "w+"
       SysLib.cout("Correct behavior of open........................2\n");
     if ( test3( ) ) // write buf[16]
       SysLib.cout("Correct behavior of writing a few bytes.........2\n");
-    //if ( test4( ) ) // close fd
+    if ( test4( ) ) // close fd
       SysLib.cout("Correct behavior of close.......................2\n");
     if ( test5( ) ) // read buf[16] from "css430"
       SysLib.cout("Correct behavior of reading a few bytes.........2\n");
@@ -36,7 +36,7 @@ class Test5 extends Thread {
       SysLib.cout("Correct behavior of read/writing a small file.0.5\n");
 
     test9( );        // open "bothell" with "w+"
-    if ( test10( ) ) // write buf[512 * 13]
+    /*if ( test10( ) ) // write buf[512 * 13]
       SysLib.cout("Correct behavior of writing a lot of bytes....0.5\n");
     //test11( );       // close fd
     if ( test12( ) ) // read buf[512 * 13] from "bothell"
@@ -53,7 +53,7 @@ class Test5 extends Thread {
     if ( test17( ) ) // create "uwb0" - "uwb45" of buf[512 * 13]
       SysLib.cout("Correct behavior of creating over 40 files ...0.5\n");
     if ( test18( ) ) // "uwb1" read/written among Test5 and Test6
-      SysLib.cout("Correct behavior of two fds to the same file..0.5\n");
+      SysLib.cout("Correct behavior of two fds to the same file..0.5\n"); */
   
     SysLib.cout( "Test completed\n" );
     SysLib.exit( );

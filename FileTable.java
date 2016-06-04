@@ -111,8 +111,6 @@ public class FileTable
       ftEnt.inode.count++;
       // immediately write back this inode to the disk
       ftEnt.inode.toDisk(inumber);
-      // add inode to the inodeList
-      //inodeList.addElement(ftEnt.inode);
       // return a reference to this file (structure) table entry
       return ftEnt;
    }

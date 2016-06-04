@@ -13,8 +13,6 @@ public class Directory
 
    public Directory(int maxInumber) // directory constructor
    {
-	  SysLib.cout("MY DIRECTORY \n");
-	  
       fsize = new int[maxInumber];     // maxInumber = max files
       for (int i = 0; i < maxInumber; i++)
          fsize[i] = 0;                 // all file size initialized to 0
@@ -99,11 +97,9 @@ public class Directory
       return (short) -1;
    }
 
-   /*
-   * Deletes the Inode in memory by dereferencing the Inumber.
-   * The Inode data stays in memeory, but will be overwritten by
-   * the next Inode to occupy the same disk space.
-   */
+   // Deletes the Inode in memory by dereferencing the Inumber.
+   // The Inode data stays in memeory, but will be overwritten by
+   // the next Inode to occupy the same disk space.
    public boolean ifree(short iNumber)
    {
 		if (fsize[iNumber] > 0)

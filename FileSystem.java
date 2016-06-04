@@ -234,34 +234,6 @@ public class FileSystem
                     blockID = freeBlock;
                 }
 
-               /* if (blockID == -1) { // need find a free block
-                    short freeBlock = (short) superBlock.getBlock();
-                    // attempt to submit block, then act based on return code
-                    int status = entry.inode.addBlock(entry.seekPtr, freeBlock);
-                    switch ( status )
-                    // 1 = good to write, -1 = in use, 0 = indirect is empty
-                    {
-                        case Inode.INODE_FULL:
-                            SysLib.cerr("Filesystem error on write\n");
-                            return -1;
-                        case Inode.INDIRECT_EMPTY: // indirect is empty, search for new location
-                            freeBlock = (short) superBlock.getBlock();
-                            status = entry.inode.addBlock(entry.seekPtr, freeBlock); // attempt to submit location
-                            if (!entry.inode.addIndirectBlock((short) status)) { // attempt to set index to new location
-                                SysLib.cerr("Filesystem error on write\n");
-                                return -1;
-                            }
-                            // attempt submit block again
-                            if ( entry.inode.addBlock(entry.seekPtr, freeBlock) != Inode.INODE_AVAILABLE ) {
-                                SysLib.cerr("Filesystem error on write\n");
-                                return -1;
-                            }
-                            break;
-                    }
-                    // update location
-                    blockID = freeBlock;
-                } */
-
                 // read the whole block
                 byte[] blockData = new byte[Disk.blockSize];
                 SysLib.rawread(blockID, blockData);
@@ -305,25 +277,6 @@ public class FileSystem
             return true;
         }
         return false;
-        /*
-        // search the directory for the filename
-        short iNumber = directory.namei(filename);
-
-        // if the filename was found, get the Inode from the FileTable
-        // set the Inode's flag to 4 (delete pending)
-        if (iNumber != -1)
-        {
-            Inode inode = fileTable.getInode(iNumber);
-            inode.flag = 4;
-
-            if (inode.count == 0)
-            {
-                directory.ifree(iNumber);
-            }
-            return true;
-        }
-        return false;
-        */
     }
 
     // clears and frees all the blocks the inode was pointing to

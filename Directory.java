@@ -12,12 +12,12 @@ public class Directory
 
    public Directory(int maxInumber) // directory constructor
    {
-      fsize = new int[maxInumber];     // maxInumber = max files
+      fsize = new short[maxInumber];     // maxInumber = max files
       for (int i = 0; i < maxInumber; i++)
          fsize[i] = 0;                 // all file size initialized to 0
       fnames = new char[maxInumber][maxChars];
       String root = "/";                // entry(inode) 0 is "/"
-      fsize[0] = root.length();        // fsize[0] is the size of "/".
+      fsize[0] = (short)root.length();        // fsize[0] is the size of "/".
       root.getChars(0, fsize[0], fnames[0], 0); // fnames[0] includes "/"
    }
 
@@ -26,13 +26,13 @@ public class Directory
       // assumes data[] received directory information from disk
       // initializes the Directory instance with this data[]
 
-      int offest = 0;
+      int offset = 0;
 
       // fill in the fsize array
       for (int i = 0; i < fsize.length; i++)
       {
           fsize[i] = SysLib.bytes2short(data, (i * 2));
-          offest += 2;
+          offset += 2;
       }
 
       // fill in the fnames array
@@ -65,7 +65,7 @@ public class Directory
       for (int i = 0; i < fsize.length; i++)
       {
           SysLib.short2bytes(fsize[i], data, (i * 2));
-          offest += 2;
+          offset += 2;
       }
 
       // convert the fnames array into bytes
@@ -74,7 +74,7 @@ public class Directory
           for (int k = 0; k < fnames[j].length; k++)
           {
               // put each character into the buffer
-              data[offset] = fnames[j][k];
+              data[offset] = (byte)fnames[j][k];
               // offset by char byte size (2 bytes)
               offset += 2;
           }
@@ -93,11 +93,11 @@ public class Directory
           if (fsize[i] == 0)
           {
               // record the filename length
-              fsize[i] = filename.length();
+              fsize[i] = (short)filename.length();
               // put the file name in the fnames array
               filename.getChars(0, fsize[i], fnames[i], 0);
               // return the index as a short to be this file's iNumber
-              return i;
+              return (short)i;
           }
       }
       // No free iNumbers left in the directory
@@ -122,7 +122,7 @@ public class Directory
       // clear the fnames array for this inumber
       for (int i = 0; i < fnames[iNumber].length; i++)
       {
-          fnames[iNumber][i] = '';
+          fnames[iNumber][i] = '0';
       }
 
       // the corresponding file will be deleted.
@@ -140,7 +140,7 @@ public class Directory
           if (fsize[i] == filename.length() && filename.equals(String.valueOf(fnames[i])));
           {
               // return the index
-              return i;
+              return (short)i;
           }
       }
       // file not found

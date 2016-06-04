@@ -2,16 +2,18 @@
 // CSS 430 Program 5
 // 5/30/2016
 
-
 import java.util.Vector;
 
 public class FileTable
 {
+<<<<<<< HEAD
    private final static int UNUSED = 0;
    private final static int USED = 1;
    private final static int WRITE = 2;
    private final static int PENDING_DELETE = 3;
 
+=======
+>>>>>>> e471486cce56f2c11a944d9de5f4401568e6638e
    private Vector table;         // the actual entity of this file table
    private Directory dir;        // the root directory
 
@@ -24,6 +26,10 @@ public class FileTable
    }                             // from the file system
 
    // major public methods
+
+   // Allocates new file table entry for the filename
+   // Allocate and retrieve the corresponding inode
+   // Returns reference to the file table entry
    public synchronized FileTableEntry falloc(String filename, String mode)
    {
       short inumber = -1;

@@ -6,7 +6,7 @@
 public class Inode
 {
    private final static int iNodeSize = 32;       // fix to 32 bytes
-   private final static int directSize = 11;      // # direct pointers
+   public final static int directSize = 11;      // # direct pointers
 
    public int length;                             // file size in bytes
    public short count;                            // # file-table entries pointing to this
@@ -14,7 +14,8 @@ public class Inode
    public short direct[] = new short[directSize]; // direct pointers
    public short indirect;                         // a indirect pointer
 
-   Inode() // a default constructor
+    // a default constructor
+   Inode()
    {
       length = 0;
       count = 0;
@@ -27,7 +28,8 @@ public class Inode
       indirect = -1;
    }
 
-   Inode(short iNumber) // retrieving inode from disk
+    // retrieving inode from disk
+   Inode(short iNumber)
    {
       // read in disk block where Inode lives
       // disk block = iNumber / 16
@@ -47,7 +49,8 @@ public class Inode
       indirect = SysLib.bytes2short(data, startIndex + 30);
    }
 
-   int toDisk(short iNumber) // save to disk as the i-th inode
+    // save to disk as the i-th inode
+   int toDisk(short iNumber)
    {
       if (iNumber < 0)
       {
@@ -72,4 +75,69 @@ public class Inode
       SysLib.rawwrite(block, data);
       return 1;
    }
+
+    //returns the block that contains the seekPtr
+   int getBlockID (int seekPtr)
+   {
+       int tempID = seekPtr / Disk.blockSize;
+       int blockID = -1;
+       if (tempID < directSize)
+       {
+            blockID = direct[tempID];
+       }
+       else if (indirect != -1)
+       {
+            byte[] indirectData = readIndirectData();
+            int offset = (tempID - directSize) * 2;
+            blockID = SysLib.bytes2short(indirectData, offset); // *short to int
+       }
+       return blockID;
+   }
+
+    // Add a free block to the inode
+    // Returns true if the block was successfully added, false otherwise
+    boolean addBlock (short freeBlock)
+    {
+        int tempID = (length / Disk.blockSize) + 1 ;
+        if(tempID < directSize) // add block to direct
+        {
+            direct[tempID] = freeBlock;
+        }
+        else if (indirect == -1) // add block as indirect block
+        {
+            indirect = freeBlock;
+        }
+        else // add block to indirect
+        {
+            byte[] indirectData = readIndirectData();
+            int offset = 0;
+            short blockID = SysLib.bytes2short(indirectData, offset);
+            while(blockID != -1)
+            {
+                if (offset >= Disk.blockSize)
+                {
+                  return false; // Indirect block is full
+                }
+
+                offset += 2;
+                blockID = SysLib.bytes2short(indirectData, offset);
+            }
+
+            SysLib.short2bytes(freeBlock, indirectData, offset);
+            SysLib.rawwrite(indirect, indirectData);
+        }
+        return true;
+    }
+
+    byte[] readIndirectData ()
+    {
+        if (indirect != -1)
+        {
+            byte[] indirectData = new byte[Disk.blockSize];
+            SysLib.rawread(indirect, indirectData);
+            indirect = -1;
+            return indirectData;
+        }
+        return null;
+    }
 }

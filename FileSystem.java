@@ -8,6 +8,9 @@ public class FileSystem
     private final int SEEK_CUR = 1;
     private final int SEEK_END = 2;
 
+    private final int ERROR = -1;
+    private final static int MAX_FILESIZE = 136704; // bytes
+
     private SuperBlock superBlock;
     private Directory directory;
     private FileTable fileTable;
@@ -108,7 +111,7 @@ public class FileSystem
         if (entry == null)
         {
             SysLib.cerr("File Table Entry is invalid");
-            return -1;
+            return ERROR;
         }
         synchronized (entry)
         {
@@ -137,22 +140,102 @@ public class FileSystem
         // The mode for entry should be r or w+
         if (entry == null || entry.mode.equals("w") || entry.mode.equals("a"))
         {
-            return -1;
+            return ERROR;
         }
 
-        int filesize = fsize(entry);
-        int bufferIdx = 0;
-        int bufferRemaining = buffer.length;
         synchronized (entry)
         {
+            int filesize = fsize(entry);
+            int bytesRead = 0;
+            int bufferRemaining = buffer.length;
 
+            while (bufferRemaining > 0 && entry.seekPtr < filesize)
+            {
+                int blockID = entry.inode.getBlockID(entry.seekPtr); // block to read
+                if (blockID != -1)
+                {
+                    // read the whole block
+                    byte[] blockData = new byte[Disk.blockSize];
+                    SysLib.rawread(blockID, blockData);
+                    int startPoint = entry.seekPtr % Disk.blockSize;
 
+                    // Calculate how much to read from the data
+                    // must be less than filesize, block size, and remaining buffer size
+                    int blockDataToRead = Disk.blockSize - startPoint;
+                    int fileDataLeft = filesize - entry.seekPtr;
+                    int sizeToRead = Math.min(Math.min(blockDataToRead, fileDataLeft), bufferRemaining);
+
+                    // copy block data over to buffer
+                    System.arraycopy(blockData, startPoint, buffer, bytesRead, sizeToRead);
+
+                    // adjust seek pointer, total bytes read, and size of remaining buffer
+                    entry.seekPtr += sizeToRead;
+                    bytesRead += sizeToRead;
+                    bufferRemaining -= sizeToRead;
+                }
+            }
+            return bytesRead;
         }
     }
 
     int write(FileTableEntry entry, byte[] buffer)
     {
-        return -1;
+        // The mode for entry should be w, a, or w+
+        if (entry == null || entry.mode.equals("r"))
+        {
+            return ERROR;
+        }
+
+        synchronized (entry)
+        {
+            int filesize = fsize(entry);
+            int bytesWritten = 0;
+            int bufferRemaining = buffer.length;
+
+            while (bufferRemaining > 0 && filesize < MAX_FILESIZE)
+            {
+                int blockID = entry.inode.getBlockID(entry.seekPtr);
+                // Need to find free block and give it to inode
+                while (blockID == -1)
+                {
+                    int freeBlock = superBlock.getBlock();
+                    if (!entry.inode.addBlock((short)freeBlock))
+                    {
+                        superBlock.returnBlock(freeBlock);
+                        return ERROR;
+                    }
+                    blockID = entry.inode.getBlockID(entry.seekPtr);
+                }
+
+                // read the whole block
+                byte[] blockData = new byte[Disk.blockSize];
+                SysLib.rawread(blockID, blockData);
+                int startPoint = entry.seekPtr % Disk.blockSize;
+
+                // calculate how much to write to block
+                // must be less than block size and buffer remaining size
+                int blockSizeLeft = Disk.blockSize - startPoint;
+                int sizeToWrite = Math.min(blockSizeLeft, bufferRemaining);
+
+                // copy buffer data over to the blockData and write to disk
+                System.arraycopy(buffer, bytesWritten, blockData, startPoint, sizeToWrite);
+                SysLib.rawwrite(blockID, blockData);
+
+                // adjust seek pointer, total bytes written, and size of remaining buffer
+                entry.seekPtr += sizeToWrite;
+                bytesWritten += sizeToWrite;
+                bufferRemaining -= sizeToWrite;
+
+                // adjust the file size
+                if (entry.seekPtr > filesize)
+                {
+                    entry.inode.length = entry.seekPtr;
+                }
+            }
+            // update inode on disk
+            entry.inode.toDisk(entry.iNumber);
+            return bytesWritten;
+        }
     }
 
     // delete file
@@ -161,23 +244,58 @@ public class FileSystem
     boolean delete(String filename)
     {
         // search the directory for the filename
+        short iNumber = directory.namei(filename);
 
-        // if the filename was found, get the Inode from the FileTableEntry
-
+        // if the filename was found, get the Inode from the FileTable
         // set the Inode's flag to 2 (delete pending)
+        if (iNumber != -1)
+        {
+            Inode inode = fileTable.getInode(iNumber);
+            inode.flag = 2;
 
-        // if the Inode count is = 0
-
-        // call the directory's ifree method
-
-        // return true
-
+            if (inode.count == 0)
+            {
+                directory.ifree(iNumber);
+            }
+            return true;
+        }
         return false;
     }
 
+    // clears and frees all the blocks the inode was pointing to
     private boolean deallocateAllBlocks(FileTableEntry entry)
     {
-        return true;
+        if (entry != null && entry.inode.count == 1)
+        {
+            // release indirect blocks and indirect block itself
+            byte[] indirectData = entry.inode.readIndirectData();
+            if (indirectData != null)
+            {
+                int offset = 0;
+                int block = SysLib.bytes2short(indirectData, offset);
+                while (block != -1 && offset < Disk.blockSize)
+                {
+                    superBlock.returnBlock(block);
+                    offset+=2;
+                    block = SysLib.bytes2short(indirectData, offset);
+                }
+            }
+            superBlock.returnBlock(entry.inode.indirect);
+
+            // release direct blocks
+            for (int i = 0; i < Inode.directSize; i++)
+            {
+                int blockID = entry.inode.direct[i];
+                if (blockID != -1)
+                {
+                    superBlock.returnBlock(blockID);
+                    entry.inode.direct[i] = -1;
+                }
+            }
+            entry.inode.toDisk(entry.iNumber);
+            return true;
+        }
+        return false;
     }
 
 }

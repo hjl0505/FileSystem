@@ -90,6 +90,7 @@ public class Kernel
                   // instantiate synchronized queues
                   ioQueue = new SyncQueue( );
                   waitQueue = new SyncQueue( scheduler.getMaxThreads( ) );
+                  fs = new FileSystem(1000);
                   return OK;
                case EXEC:
                   return sysExec( ( String[] )args );

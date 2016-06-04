@@ -195,8 +195,9 @@ public class FileSystem
             while (bufferRemaining > 0 && filesize < MAX_FILESIZE)
             {
                 int blockID = entry.inode.getBlockID(entry.seekPtr);
+                SysLib.cout("HERE blockID = " + blockID + "\n");
                 // Need to find free block and give it to inode
-                while (blockID == -1)
+                /*while (blockID == -1)
                 {
                     int freeBlock = superBlock.getBlock();
                     if (!entry.inode.addBlock((short)freeBlock))
@@ -205,7 +206,8 @@ public class FileSystem
                         return ERROR;
                     }
                     blockID = entry.inode.getBlockID(entry.seekPtr);
-                }
+                    SysLib.cout("HERE \n");
+                } */
 
                 // read the whole block
                 byte[] blockData = new byte[Disk.blockSize];
